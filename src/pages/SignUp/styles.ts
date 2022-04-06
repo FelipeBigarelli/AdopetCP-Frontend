@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signUpBackground from '../../assets/signUpBackground.jpg';
@@ -14,17 +14,60 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  width: 100%;
+  height: 100%;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-top: 24px;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      color: ${shade(0.2, '#000')};
+    }
+  }
+`;
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  height: inherit;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 80%;
+  justify-content: space-evenly;
+
+  animation: ${appearFromRight} 0.5s;
+
+  img {
+    height: 64px;
+  }
 
   form {
-    margin: 80px 0;
     padding: 40px;
 
-    width: 480px;
+    width: 100%;
+    max-width: 400px;
 
     box-shadow: 0 15px 25px rgba(129, 124, 124, 0.6);
     border: 2px solid #d200ff;
@@ -39,6 +82,7 @@ export const Content = styled.div`
 
     h1 {
       margin-bottom: 24px;
+      text-align: center;
     }
 
     button {
@@ -57,43 +101,5 @@ export const Content = styled.div`
         background: ${shade(0.2, '#ff9000')};
       }
     }
-
-    > a {
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-
-      display: block;
-      margin-top: 24px;
-
-      transition: color 0.2s;
-
-      &:hover {
-        color: ${shade(0.2, '#fff')};
-      }
-    }
-  }
-
-  > a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-    margin-top: 24px;
-
-    display: flex;
-    align-items: center;
-
-    svg {
-      margin-right: 16px;
-    }
-
-    &:hover {
-      color: ${shade(0.2, '#fff')};
-    }
-  }
-
-  img {
-    height: 128px;
   }
 `;

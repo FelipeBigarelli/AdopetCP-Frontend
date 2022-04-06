@@ -14,13 +14,14 @@ export const Container = styled.div<ContainerProps>`
 
   color: #0800f0;
   border-radius: 10px;
-  border: 2px solid #3bfa25;
+  border-bottom: 2px solid #0800f0;
+  border-top: 2px solid #0800f0;
 
   display: flex;
   align-items: center;
 
   & + div {
-    margin-top: 8px;
+    margin-top: 16px;
   }
 
   ${props =>
@@ -45,7 +46,7 @@ export const Container = styled.div<ContainerProps>`
     props.isFilled &&
     css`
       color: #3bfa25;
-      border-color: transparent;
+      border-color: #3bfa25;
     `}
 
     ${props =>
