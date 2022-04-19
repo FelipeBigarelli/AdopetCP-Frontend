@@ -1,47 +1,35 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  /* height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  width: auto;
+  height: 100vh;
 
-  background: #d0ffff; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-// export const Content = styled.div`
-//   width: 100%;
-//   max-width: 1000px;
-//   padding-top: 32px;
+export const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  padding: 96px 32px 0 32px;
 
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-// export const LastPosts = styled.div`
-//   display: flex;
-//   flex: 1;
-//   justify-content: space-evenly;
-// `;
+  h1 {
+    padding: 36px 0;
+  }
 
-// export const Post = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   border: 1px solid #000;
+  h2 {
+    padding-bottom: 16px;
+  }
 
-//   background: #fff;
-
-//   img {
-//     height: 160px;
-//   }
-// `;
-
-// export const PostContent = styled.div`
-//   display: flex;
-//   justify-content: space-evenly;
-// `;
-
-// export const PostDescription = styled.div``;
+  img {
+    height: 400px;
+    /* width: 100%; */
+  }
+`;
