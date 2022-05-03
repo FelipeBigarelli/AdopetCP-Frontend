@@ -1,6 +1,6 @@
-import React from 'react';
-import Header from '../../components/Header';
+import React, { useEffect } from 'react';
 
+import Header from '../../components/Header';
 import { Container, Content, Welcome } from './styles';
 
 import petBackgroundImg from '../../assets/pet-dashboard-background.png';

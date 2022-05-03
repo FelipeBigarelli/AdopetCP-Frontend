@@ -5,21 +5,24 @@ interface PostButtonProps {
 }
 
 export const Container = styled.div`
+  height: 100vh;
+  max-height: 100%;
   width: 100%;
-  padding-top: 96px;
+  padding: 96px 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: #d200ff;
 `;
 
 export const Content = styled.div`
   width: 100%;
+  height: calc(100vh - 96px);
   max-width: 1200px;
+  margin: 0 auto;
+
+  background: #fff;
 
   h1 {
-    padding: 32px 0;
+    padding: 32px 0 0 62px;
   }
 `;
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 import Header from '../../components/Header';
-// import Post from '../../components/Post';
+import { usePost } from '../../hooks/post';
 
 import {
   Container,
@@ -13,42 +13,14 @@ import {
   PostContent,
 } from './styles';
 import { useModal } from '../../hooks/modal';
-import Modal from '../../components/Modal';
-import api from '../../services/api';
-import maskPhone from '../../utils/maskPhone';
-
-interface Posts {
-  id?: string;
-  title: string;
-  description: string;
-  photo: string;
-  phone_number: string;
-  cep?: string;
-  city?: string;
-  district?: string;
-  street?: string;
-  house_number?: string;
-  category_name?: string;
-}
 
 const Profile: React.FC = () => {
   const { isShown, toggle } = useModal();
-  const [userPosts, setUserPosts] = useState<Posts[]>([]);
+  const { listPost, userPosts } = usePost();
 
   useEffect(() => {
-    api.get<Posts[]>('/posts/user-posts').then(response => {
-      const postsFormatted = response.data.map(post => {
-        const phoneNumberFormatted = maskPhone(post.phone_number);
-
-        return {
-          ...post,
-          phone_number: phoneNumberFormatted,
-        };
-      });
-
-      setUserPosts(postsFormatted);
-    });
-  }, []);
+    listPost();
+  }, [listPost]);
 
   return (
     <>
@@ -60,36 +32,9 @@ const Profile: React.FC = () => {
           <PostsContainer>
             {userPosts.map(post => (
               <>
-                <Modal isShown={isShown} hide={toggle}>
-                  <ModalPost key={post.id}>
-                    <img src={post.photo} alt="Animal" />
-                    <p>{post.category_name}</p>
-
-                    <PostContent>
-                      <div className="description">
-                        <h2>{post.title}</h2>
-                        <span>{post.description}</span>
-                      </div>
-
-                      <div className="address">
-                        <span>CEP: {post.cep}</span>
-                        <span>Cidade: {post.city}</span>
-                        <span>Bairro: {post.district}</span>
-                        <span>Rua: {post.street}</span>
-                        <span>Número: {post.house_number}</span>
-                      </div>
-
-                      <div className="whatsapp">
-                        <FaWhatsapp size={24} />
-                        <span>{post.phone_number}</span>
-                      </div>
-                    </PostContent>
-                  </ModalPost>
-                </Modal>
-
                 <Post onClick={toggle} key={post.id}>
-                  <img src={post.photo} alt="Animal" />
-
+                  <img src={post.images.image_name} alt="Animal" />
+                  {console.log(post.images.image_name)}
                   <PostContent>
                     <div className="description">
                       <strong>{post.title}</strong>
