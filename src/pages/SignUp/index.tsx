@@ -8,12 +8,12 @@ import api from '../../services/api';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import logoImg from '../../assets/logoAntiga.png';
+import logoImg from '../../assets/logo.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, Content, AnimationContainer } from './styles';
+import { Background, Container, Content, AnimationContainer } from './styles';
 import { useToast } from '../../hooks/toast';
 
 interface SignUpFormData {
@@ -81,6 +81,8 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
+      <Background />
+
       <Content>
         <AnimationContainer>
           <img src={logoImg} alt="AdopetCP" />

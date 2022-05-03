@@ -5,7 +5,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 
-import logoImg from '../../assets/logoAntiga.png';
+import logoImg from '../../assets/logo.png';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import { useAuth } from '../../hooks/auth';
@@ -14,7 +14,7 @@ import { useToast } from '../../hooks/toast';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, Content, AnimationContainer } from './styles';
+import { Background, Container, Content, AnimationContainer } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -106,6 +106,8 @@ const SignIn: React.FC = () => {
           </Link>
         </AnimationContainer>
       </Content>
+
+      <Background />
     </Container>
   );
 };

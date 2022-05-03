@@ -5,17 +5,21 @@ import signUpBackground from '../../assets/signUpBackground.jpg';
 
 export const Container = styled.div`
   height: 100vh;
-  background: url(${signUpBackground});
-  background-size: cover;
-
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Content = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   height: 100%;
+  width: 100%;
+  max-width: 700px;
+  background: #d200ff;
 
   a {
     color: #fff;
@@ -59,22 +63,14 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromRight} 0.5s;
 
-  img {
-    height: 64px;
-  }
-
   form {
     padding: 40px;
 
     width: 100%;
     max-width: 400px;
 
-    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.6);
-    border: 2px solid #d200ff;
-    box-shadow: 0 8px 18px -1px #d200ff;
-    border-radius: 32px 0px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    background: #fff;
 
     display: flex;
     flex-direction: column;
@@ -86,8 +82,7 @@ export const AnimationContainer = styled.div`
     }
 
     button {
-      padding: 16px;
-      margin: 16px 0;
+      margin-top: 32px;
       width: 100%;
       height: 56px;
       font-weight: 500;
@@ -102,4 +97,35 @@ export const AnimationContainer = styled.div`
       }
     }
   }
+
+  > a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-top: 24px;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  img {
+    height: 120px;
+    filter: brightness(150%);
+  }
+`;
+
+export const Background = styled.div`
+  flex: 1;
+  background: url(${signUpBackground}) no-repeat center;
+  background-size: cover;
+  height: 100%;
 `;

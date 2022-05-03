@@ -5,16 +5,21 @@ import signInBackground from '../../assets/signInBackground.jpg';
 
 export const Container = styled.div`
   height: 100vh;
-  background-size: cover;
-
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Content = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   height: 100%;
+  width: 100%;
+  max-width: 700px;
+  background: #d200ff;
 `;
 
 const appearFromLeft = keyframes`
@@ -45,12 +50,8 @@ export const AnimationContainer = styled.div`
     width: 100%;
     max-width: 400px;
 
-    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.6);
-    border: 2px solid #d200ff;
-    box-shadow: 0 8px 18px -1px #d200ff;
-    border-radius: 32px 0px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    background: #fff;
 
     display: flex;
     flex-direction: column;
@@ -89,7 +90,7 @@ export const AnimationContainer = styled.div`
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#fff')};
+        color: #d200ff;
       }
     }
   }
@@ -109,11 +110,19 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#fff')};
+      color: #fff;
     }
   }
 
   img {
-    height: 64px;
+    height: 120px;
+    filter: brightness(150%);
   }
+`;
+
+export const Background = styled.div`
+  flex: 1;
+  background: url(${signInBackground}) no-repeat center;
+  background-size: cover;
+  height: 100%;
 `;

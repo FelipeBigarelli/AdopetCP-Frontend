@@ -1,20 +1,31 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: auto;
   height: 100vh;
+  width: 100%;
+  padding: 96px 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: #d200ff;
 `;
 
 export const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+
+  height: calc(100vh - 96px);
   width: 100%;
+  max-width: 1200px;
+
+  background: #fff;
+`;
+
+export const Welcome = styled.div`
+  /* width: 100%;
   height: 100%;
   max-width: 1200px;
-  padding: 96px 32px 0 32px;
 
   display: flex;
   justify-content: center;
@@ -30,6 +41,5 @@ export const Content = styled.div`
 
   img {
     height: 400px;
-    /* width: 100%; */
-  }
+  } */
 `;

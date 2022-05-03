@@ -17,22 +17,12 @@ export const Container = styled.header`
 
 export const Content = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
   width: 100%;
   max-width: 1200px;
 
-  a img {
-    height: 72px;
+  .logo-header img {
+    height: 80px;
   }
-`;
-
-export const Menu = styled.div`
-  display: flex;
-  flex: 1;
-  justify-content: space-evenly;
-
-  padding: 0 32px;
 
   a {
     padding: 16px;
