@@ -5,7 +5,6 @@ import signInBackground from '../../assets/signInBackground.jpg';
 
 export const Container = styled.div`
   height: 100vh;
-  background: url(${signInBackground}) center;
   background-size: cover;
 
   display: flex;
