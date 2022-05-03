@@ -25,6 +25,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@AdopetCP:user');
 
     if (token && user) {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 
