@@ -12,10 +12,10 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   width: 100%;
 
-  color: #0800f0;
+  color: #000;
   border-radius: 10px;
-  border-bottom: 2px solid #0800f0;
-  border-top: 2px solid #0800f0;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
 
   display: flex;
   align-items: center;
@@ -38,8 +38,8 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      color: #d200ff;
-      border-color: #d200ff;
+      color: #0800f0;
+      border-color: #0800f0;
     `}
 
   ${props =>
@@ -76,6 +76,7 @@ export const Container = styled.div<ContainerProps>`
 export const Error = styled(ToolTip)`
   height: 20px;
   margin-left: 16px;
+  position: relative;
 
   svg {
     margin: 0;

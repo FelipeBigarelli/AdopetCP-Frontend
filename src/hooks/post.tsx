@@ -11,6 +11,10 @@ import maskPhone from '../utils/maskPhone';
 interface PostContextData {
   listPost(): void;
   userPosts: IPostDTO[];
+  listLastPosts(): void;
+  lastPosts: IPostDTO[];
+  listCategories(): void;
+  categories: ICategoriesDTO[];
 }
 
 interface IImagesDTO {
@@ -34,10 +38,17 @@ interface IPostDTO {
   images: IImagesDTO;
 }
 
+interface ICategoriesDTO {
+  id: string;
+  category_name: string;
+}
+
 const PostContext = createContext<PostContextData>({} as PostContextData);
 
 const PostProvider: React.FC = ({ children }) => {
   const [userPosts, setUserPosts] = useState<IPostDTO[]>([]);
+  const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
+  const [categories, setCategories] = useState<ICategoriesDTO[]>([]);
 
   const listPost = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
@@ -54,8 +65,42 @@ const PostProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const listLastPosts = useCallback(async () => {
+    await api.get<IPostDTO[]>('/posts/last').then(response => {
+      const postsFormatted = response.data.map(post => {
+        const phoneNumberFormatted = maskPhone(post.phone_number);
+
+        return {
+          ...post,
+          phone_number: phoneNumberFormatted,
+        };
+      });
+
+      setLastPosts(postsFormatted);
+    });
+  }, []);
+
+  const listCategories = useCallback(async () => {
+    await api.get<ICategoriesDTO[]>('/categories').then(response => {
+      setCategories(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    listCategories();
+  }, [listCategories]);
+
   return (
-    <PostContext.Provider value={{ listPost, userPosts }}>
+    <PostContext.Provider
+      value={{
+        listPost,
+        userPosts,
+        listLastPosts,
+        lastPosts,
+        listCategories,
+        categories,
+      }}
+    >
       {children}
     </PostContext.Provider>
   );

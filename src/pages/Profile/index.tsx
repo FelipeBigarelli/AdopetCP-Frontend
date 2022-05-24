@@ -22,6 +22,8 @@ const Profile: React.FC = () => {
     listPost();
   }, [listPost]);
 
+  // console.log(userPosts[0].images);
+
   return (
     <>
       <Header />
@@ -30,11 +32,10 @@ const Profile: React.FC = () => {
           <h1>Minhas postagens</h1>
 
           <PostsContainer>
-            {userPosts.map(post => (
+            {/* {userPosts.map(post => (
               <>
                 <Post onClick={toggle} key={post.id}>
-                  <img src={post.images.image_name} alt="Animal" />
-                  {console.log(post.images.image_name)}
+                  <img src="{post.images.image_name}" alt="Animal" />
                   <PostContent>
                     <div className="description">
                       <strong>{post.title}</strong>
@@ -48,7 +49,7 @@ const Profile: React.FC = () => {
                   </PostContent>
                 </Post>
               </>
-            ))}
+            ))} */}
           </PostsContainer>
         </Content>
       </Container>

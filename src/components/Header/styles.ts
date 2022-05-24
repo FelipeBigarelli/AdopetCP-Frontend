@@ -12,7 +12,8 @@ export const Container = styled.header`
   justify-content: center;
   align-items: center;
 
-  background: #ff0000;
+  background: #00d4ff;
+  box-shadow: 0 0 1em red;
 `;
 
 export const Content = styled.div`
@@ -22,6 +23,8 @@ export const Content = styled.div`
 
   .logo-header img {
     height: 80px;
+    filter: brightness(0%);
+    transition: filter 0.2s;
   }
 
   a {
@@ -29,7 +32,7 @@ export const Content = styled.div`
     font-size: 20px;
     text-decoration: none;
 
-    color: #fff;
+    color: #ff0000;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 500;
 

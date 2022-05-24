@@ -5,10 +5,13 @@ import { Container, Content } from './styles';
 import logoImg from '../../assets/logo.png';
 import adotarImg from '../../assets/adotar.png';
 import searchAnimalsImg from '../../assets/search-animals.png';
-import aboutImg from '../../assets/about.png';
+import logoutImg from '../../assets/logoutImg.png';
 import userProfileImg from '../../assets/userProfileIcon.png';
+import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <Content>
@@ -22,20 +25,17 @@ const Header: React.FC = () => {
         </a>
 
         <a href="/dashboard" className="logo-header">
-          <img
-            src={logoImg}
-            alt="AdopetCP"
-            style={{ filter: 'brightness(150%)' }}
-          />
-        </a>
-        <a className="menu-item" href="/about">
-          <img src={aboutImg} alt="" />
-          Sobre
+          <img src={logoImg} alt="AdopetCP" />
         </a>
 
         <a className="menu-item" href="/profile">
           <img src={userProfileImg} alt="" />
           Perfil
+        </a>
+
+        <a className="menu-item" href="/" onClick={signOut}>
+          <img src={logoutImg} alt="" />
+          Sair
         </a>
       </Content>
     </Container>

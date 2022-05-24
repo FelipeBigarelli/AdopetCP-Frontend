@@ -3,11 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background: #d200ff;
 
   h1 {
-    color: #fff;
-    padding-bottom: 32px;
+    padding: 32px 0;
   }
 
   display: flex;
@@ -25,10 +23,6 @@ export const Content = styled.div`
   justify-content: center;
 
   padding: 16px;
-  background: #fff;
+  background: #00d4ff;
   border-radius: 16px;
-
-  /* input[type='file'] {
-    display: none;
-  } */
 `;

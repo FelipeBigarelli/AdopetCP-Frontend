@@ -1,11 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 import Header from '../../components/Header';
-import { Container, Content, Welcome } from './styles';
+import IPostDTO from '../../components/Post/dtos/IPostDTO';
 
-import petBackgroundImg from '../../assets/pet-dashboard-background.png';
+import {
+  Container,
+  Content,
+  Welcome,
+  LastPosts,
+  Post,
+  PostContent,
+} from './styles';
+
+import petBackgroundImg from '../../assets/pet-dashboard-background-2.png';
+import { usePost } from '../../hooks/post';
+import Footer from '../../components/Footer';
 
 const Dashboard: React.FC = () => {
+  const { listLastPosts, lastPosts } = usePost();
+
+  useEffect(() => {
+    listLastPosts();
+  }, [listLastPosts]);
+
   return (
     <Container>
       <Header />
@@ -18,9 +36,34 @@ const Dashboard: React.FC = () => {
             Sua felicidade está aqui! Adote um companheiro!
           </h1>
 
-          <img src="" alt="" />
+          <h2>Últimas postagens</h2>
+
+          <img src={petBackgroundImg} alt="" className="dashboard-img" />
+
+          <LastPosts>
+            {lastPosts.map(post => (
+              <Post key={post.id}>
+                <img src="{post.images.image_name}" alt="Animal" />
+                <p className="category">{post.category_name}</p>
+
+                <PostContent>
+                  <div className="description">
+                    <strong>{post.title}</strong>
+                    <p>{post.description}</p>
+                  </div>
+
+                  <div className="whatsapp">
+                    <FaWhatsapp size={24} />
+                    <p>{post.phone_number}</p>
+                  </div>
+                </PostContent>
+              </Post>
+            ))}
+          </LastPosts>
         </Welcome>
       </Content>
+
+      <Footer />
     </Container>
   );
 };

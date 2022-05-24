@@ -19,7 +19,7 @@ export const Content = styled.div`
   height: 100%;
   width: 100%;
   max-width: 700px;
-  background: #d200ff;
+  background: #00d4ff;
 
   a {
     color: #fff;
@@ -69,7 +69,7 @@ export const AnimationContainer = styled.div`
     width: 100%;
     max-width: 400px;
 
-    border-radius: 24px;
+    border-radius: 16px 0 16px 0;
     background: #fff;
 
     display: flex;
@@ -119,7 +119,7 @@ export const AnimationContainer = styled.div`
 
   img {
     height: 120px;
-    filter: brightness(150%);
+    filter: brightness(0%);
   }
 `;
 
