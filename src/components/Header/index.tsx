@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Container, Content } from './styles';
 
@@ -10,7 +10,7 @@ import userProfileImg from '../../assets/userProfileIcon.png';
 import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
   return (
     <Container>

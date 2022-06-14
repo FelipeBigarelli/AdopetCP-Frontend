@@ -25,22 +25,22 @@ export const Welcome = styled.div`
   }
 
   h2 {
-    padding-bottom: 80px;
-  }
-
-  .dashboard-img {
-    position: absolute;
-    margin-top: -169px;
+    padding-bottom: 24px;
   }
 `;
 
 export const LastPosts = styled.div`
+  width: 100%;
+  max-width: 1000px;
+  margin-top: -47px;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
   overflow-x: scroll;
+
   border-radius: 8px;
-  padding: 12px 0 0 0;
+  padding: 12px 0 10px 0;
   background: #00d4ff;
 
   &::-webkit-scrollbar {
@@ -57,6 +57,7 @@ export const LastPosts = styled.div`
     background-color: #fff; /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
     border: 2px solid #d200ff;
+    padding-bottom: 4px;
   }
 `;
 
@@ -76,7 +77,7 @@ export const Post = styled.div`
   }
 
   img {
-    height: 200px;
+    height: 100%;
     width: 200px;
     border-radius: 8px 8px 0 0;
   }
@@ -85,17 +86,43 @@ export const Post = styled.div`
 export const PostContent = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
   margin: 8px;
 
   .description {
+    height: 100%;
+    max-height: 80px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff; /* color of the scroll thumb */
+      border-radius: 20px; /* roundness of the scroll thumb */
+      border: 2px solid #d200ff;
+      padding-bottom: 4px;
+    }
+
     strong {
       font-size: 22px;
       margin-bottom: 8px;
     }
 
     p {
+      word-wrap: break-word;
       color: #696969;
-      padding: 4px 0;
+      padding: 4px 4px 4px 0;
     }
   }
 
@@ -107,6 +134,11 @@ export const PostContent = styled.div`
     svg {
       color: #37ff0e;
       margin-right: 4px;
+      margin-top: -2px;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 `;

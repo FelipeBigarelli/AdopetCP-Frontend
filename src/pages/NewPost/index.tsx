@@ -1,27 +1,40 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import Select from 'react-select';
 
-import { useHistory } from 'react-router-dom';
-import IPostDTO from '../../components/Post/dtos/IPostDTO';
+import { Container, Content, SelectCategory } from './styles';
 
-import { Container, Content } from './styles';
-import getValidationErrors from '../../utils/getValidationErrors';
+import { usePost } from '../../hooks/post';
 import { useToast } from '../../hooks/toast';
+import getValidationErrors from '../../utils/getValidationErrors';
+import IPostDTO from '../../components/Post/dtos/IPostDTO';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import api from '../../services/api';
-import { usePost } from '../../hooks/post';
 
 const NewPost: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const { categories } = usePost();
   const history = useHistory();
-  const [value, setValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState('Selecione');
+
+  const cats: any = [];
+  categories.forEach(category => {
+    cats.push(category.category_name);
+  });
+
+  const options = [
+    { value: 'Cachorros', label: 'Cachorros' },
+    { value: 'Gatos', label: 'Gatos' },
+    { value: 'Roedores', label: 'Roedores' },
+    { value: 'Aves', label: 'Aves' },
+  ];
 
   const handleSubmit = useCallback(
     async (data: IPostDTO) => {
@@ -40,8 +53,10 @@ const NewPost: React.FC = () => {
           district: Yup.string().required('Bairro obrigatório'),
           street: Yup.string().required('Rua obrigatória'),
           house_number: Yup.string(),
-          category_name: Yup.array().required(),
+          category_name: Yup.string(),
         });
+
+        console.log(data);
 
         await schema.validate(data, {
           abortEarly: false,
@@ -55,26 +70,22 @@ const NewPost: React.FC = () => {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
-          alert('erro ');
 
-          // addToast({
-          //   type: 'error',
-          //   title: 'Erro na postagem',
-          //   description:
-          //     'Ocorreu um erro ao fazer a postagem, verifique as informações',
-          // });
+          addToast({
+            type: 'error',
+            title: 'Erro na postagem',
+            description: JSON.stringify(errors),
+            // 'Ocorreu um erro ao fazer a postagem, verifique as informações',
+          });
         }
-
-        // addToast({
-        //   type: 'error',
-        //   title: 'Erro na postagem',
-        //   description:
-        //     'Ocorreu um erro ao fazer a postagem, verifique as informações',
-        // });
       }
     },
-    [history],
+    [history, addToast],
   );
+
+  const handleChangeCategory = useCallback(e => {
+    setCategoryValue(e);
+  }, []);
 
   return (
     <Container>
@@ -84,8 +95,6 @@ const NewPost: React.FC = () => {
 
       <Content>
         <Form ref={formRef} onSubmit={handleSubmit} className="newpost-form">
-          {/* <Input name="photos" id="photos" placeholder="Foto" type="file" /> */}
-
           <Input name="title" placeholder="Título" />
           <Input name="description" placeholder="Descrição" />
           <Input name="phone_number" placeholder="Telefone" />
@@ -93,21 +102,37 @@ const NewPost: React.FC = () => {
           <Input name="city" placeholder="Cidade" />
           <Input name="district" placeholder="Bairro" />
           <Input name="street" placeholder="Rua" />
-          <Input name="house_number" placeholder="Número" />
-          {/* <Input name="category_name" type="radio" /> */}
-          <select name="category_name" id="categories" value="category_name">
-            {categories.map(category => (
-              <option
-                key={category.id}
-                value={category.category_name}
-                onChange={e => setValue(e.toString())}
-              >
-                {category.category_name}
-              </option>
-            ))}
-          </select>
+          <Input name="house_number" placeholder="Número (opcional)" />
 
-          <Button type="submit">Postar</Button>
+          <SelectCategory>
+            <strong>Selecione uma categoria</strong>
+
+            <Select value={categoryValue} options={cats} />
+            {/* <select
+              name="category_name"
+              id="categories"
+              onChange={e => {
+                handleChangeCategory(e.target.value);
+              }}
+              value={caterogyValue}
+            >
+              <option id="Selecione" value="Selecione">
+                Selecione
+              </option>
+
+              {categories.map(category => (
+                <option
+                  key={category.id}
+                  id={category.id}
+                  value={category.category_name}
+                >
+                  {category.category_name}
+                </option>
+              ))}
+            </select> */}
+          </SelectCategory>
+
+          <Button type="submit">Próximo</Button>
         </Form>
       </Content>
 

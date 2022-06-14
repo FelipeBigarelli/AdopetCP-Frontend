@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 import Header from '../../components/Header';
-import IPostDTO from '../../components/Post/dtos/IPostDTO';
+import Footer from '../../components/Footer';
+import petBackgroundImg from '../../assets/pet-dashboard-background-2.png';
 
 import {
   Container,
@@ -13,9 +14,8 @@ import {
   PostContent,
 } from './styles';
 
-import petBackgroundImg from '../../assets/pet-dashboard-background-2.png';
 import { usePost } from '../../hooks/post';
-import Footer from '../../components/Footer';
+import maskPhone from '../../utils/maskPhone';
 
 const Dashboard: React.FC = () => {
   const { listLastPosts, lastPosts } = usePost();
@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
 
           <h2>Últimas postagens</h2>
 
-          <img src={petBackgroundImg} alt="" className="dashboard-img" />
+          <img src={petBackgroundImg} alt="Animals Background" />
 
           <LastPosts>
             {lastPosts.map(post => (
@@ -54,7 +54,9 @@ const Dashboard: React.FC = () => {
 
                   <div className="whatsapp">
                     <FaWhatsapp size={24} />
-                    <p>{post.phone_number}</p>
+                    <a href={`https://wa.me/${post.phone_number}`}>
+                      {maskPhone(post.phone_number)}
+                    </a>
                   </div>
                 </PostContent>
               </Post>

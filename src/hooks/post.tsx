@@ -39,7 +39,7 @@ interface IPostDTO {
 }
 
 interface ICategoriesDTO {
-  id: string;
+  id?: string;
   category_name: string;
 }
 
@@ -67,16 +67,7 @@ const PostProvider: React.FC = ({ children }) => {
 
   const listLastPosts = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts/last').then(response => {
-      const postsFormatted = response.data.map(post => {
-        const phoneNumberFormatted = maskPhone(post.phone_number);
-
-        return {
-          ...post,
-          phone_number: phoneNumberFormatted,
-        };
-      });
-
-      setLastPosts(postsFormatted);
+      setLastPosts(response.data);
     });
   }, []);
 

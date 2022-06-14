@@ -9,7 +9,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ hide, isShown, children }) => {
-  const portalDiv = document.getElementById('post-modal') as HTMLElement;
+  const portalDiv = document.getElementById('modal') as HTMLElement;
 
   return isShown
     ? ReactDOM.createPortal(

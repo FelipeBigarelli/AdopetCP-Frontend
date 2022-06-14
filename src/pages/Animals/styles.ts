@@ -15,10 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  /* margin: 0 auto;
-  width: 100%; */
-`;
-
-export const Categories = styled.div`
   padding: 64px 0 32px 0;
 `;
+
+export const Categories = styled.div``;
