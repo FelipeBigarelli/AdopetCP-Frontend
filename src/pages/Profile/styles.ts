@@ -100,12 +100,12 @@ export const PostsContainer = styled.div`
 export const Post = styled.div`
   width: 360px;
   min-width: 360px;
-  height: 360px;
+  height: 380px;
 
   display: flex;
   flex-direction: column;
 
-  border: 1px solid #ff2000;
+  border: 1px solid #00d4ff;
   background-color: #00d4ff;
 
   border-radius: 8px;
@@ -118,7 +118,7 @@ export const Post = styled.div`
   }
 
   img {
-    min-height: 240px;
+    /* min-height: 240px; */
     height: 240px;
     width: 100%;
     border-radius: 8px 8px 0 0;
@@ -133,23 +133,23 @@ export const PostContent = styled.div`
   height: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px 4px 4px;
+  padding: 0 2px 2px 2px;
 
   .post-content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: inherit;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4px 4px 4px;
 
     background: #fff;
     border-radius: 4px;
 
     .description {
       width: inherit;
-      height: 80px;
+      height: 90px;
+      padding: 4px;
 
       overflow-y: scroll;
 
@@ -178,23 +178,34 @@ export const PostContent = styled.div`
       p {
         word-wrap: break-word;
         color: #696969;
-        padding: 4px 4px 4px 0;
+        padding: 1px;
       }
-
-      padding: 8px;
     }
+  }
+`;
 
-    .whatsapp {
-      display: flex;
-      width: inherit;
-      justify-content: flex-end;
-      align-items: center;
-      padding-right: 8px;
+export const PostFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 6px;
 
-      svg {
-        height: 22px;
-        color: #37ff0e;
-      }
+  img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+  }
+
+  #whatsapp {
+    display: flex;
+    width: inherit;
+    justify-content: flex-end;
+    align-items: center;
+
+    svg {
+      height: 22px;
+      color: #37ff0e;
     }
   }
 `;

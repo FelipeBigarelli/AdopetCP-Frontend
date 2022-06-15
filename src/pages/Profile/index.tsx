@@ -36,6 +36,7 @@ import {
   PostsContainer,
   Post,
   PostContent,
+  PostFooter,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -163,14 +164,18 @@ const Profile: React.FC = () => {
                   <PostContent>
                     <div className="post-content">
                       <div className="description">
-                        <strong>Título: {post.title}</strong>
-                        <p>Descrição: {post.description}</p>
+                        <strong>{post.title}</strong>
+                        <p>{post.description}</p>
                       </div>
 
-                      <div className="whatsapp">
-                        <FaWhatsapp size={24} />
-                        <p>{post.phone_number}</p>
-                      </div>
+                      <PostFooter>
+                        <img src={user.avatar_url} alt="Avatar" />
+
+                        <div id="whatsapp">
+                          <FaWhatsapp size={24} />
+                          <p>{post.phone_number}</p>
+                        </div>
+                      </PostFooter>
                     </div>
                   </PostContent>
                 </Post>
