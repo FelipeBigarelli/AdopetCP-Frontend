@@ -1,8 +1,5 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
-
-interface PostButtonProps {
-  toggle: () => void;
-}
 
 export const Container = styled.div`
   height: 100vh;
@@ -19,13 +16,80 @@ export const Content = styled.div`
 
   background: #fff;
 
+  button {
+    margin: 32px 0 0 62px;
+    padding: 4px 8px;
+
+    border: 1px solid #00d4ff;
+    background-color: #00d4ff;
+    box-shadow: 0 0 0.5em #ff2000;
+
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ffe100;
+    }
+  }
+
   h1 {
-    padding: 32px 0 0 62px;
+    padding-top: 32px;
+    margin: 0 62px;
+  }
+`;
+
+export const AvatarInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 48px 0;
+  width: 100%;
+
+  img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  label {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    left: 40px;
+    top: 48px;
+    background: #00d4ff;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    input {
+      display: none;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #312e38;
+    }
+
+    &:hover {
+      background: ${shade(0.2, '#ff9000')};
+    }
   }
 `;
 
 export const PostsContainer = styled.div`
-  width: inherit;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
   flex-wrap: wrap;
 
   display: flex;
@@ -33,42 +97,32 @@ export const PostsContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-export const Post = styled.button`
-  width: 400px;
-  height: 400px;
+export const Post = styled.div`
+  width: 360px;
+  min-width: 360px;
+  height: 360px;
 
   display: flex;
   flex-direction: column;
 
-  border: 1px solid transparent;
+  border: 1px solid #ff2000;
+  background-color: #00d4ff;
+
   border-radius: 8px;
-  transition: border-color 0.2s;
-  background: #d0ffff;
+  transition: all 0.2s;
   margin: 16px 32px;
 
   &:hover {
     border-color: #d200ff;
+    box-shadow: 0 0 0.5em #ff2000;
   }
 
   img {
-    height: 320px;
+    min-height: 240px;
+    height: 240px;
     width: 100%;
     border-radius: 8px 8px 0 0;
-    margin-bottom: 16px;
-  }
-
-  & + div {
-    padding-bottom: 32px;
-  }
-`;
-
-export const ModalPost = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  img {
-    height: 200px;
-    width: 100%;
+    margin-bottom: 4px;
   }
 `;
 
@@ -76,63 +130,71 @@ export const PostContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: space-between;
-  /* padding: 0 16px; */
+  padding: 0 4px 4px 4px;
 
-  .description {
-    width: inherit;
-    padding-bottom: 64px;
-
-    h2 {
-      padding-bottom: 4px;
-    }
-
-    span {
-      color: #696969;
-    }
-  }
-
-  .address {
-    width: inherit;
+  .post-content {
     display: flex;
     flex-direction: column;
-
-    & > span {
-      padding-bottom: 4px;
-    }
-  }
-
-  .whatsapp {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding-top: 16px;
-
-    svg {
-      color: #37ff0e;
-    }
-  }
-
-  /* .whatsapp {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-
-    height: 24px;
-
-    svg {
-      height: 22px;
-      color: #37ff0e;
-    }
-  }
-
-  .address {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     width: 100%;
-  } */
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 4px 4px;
+
+    background: #fff;
+    border-radius: 4px;
+
+    .description {
+      width: inherit;
+      height: 80px;
+
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+        height: 12px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 20px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #fff; /* color of the scroll thumb */
+        border-radius: 20px; /* roundness of the scroll thumb */
+        border: 2px solid #d200ff;
+        padding-bottom: 4px;
+      }
+
+      strong {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        word-wrap: break-word;
+        color: #696969;
+        padding: 4px 4px 4px 0;
+      }
+
+      padding: 8px;
+    }
+
+    .whatsapp {
+      display: flex;
+      width: inherit;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 8px;
+
+      svg {
+        height: 22px;
+        color: #37ff0e;
+      }
+    }
+  }
 `;

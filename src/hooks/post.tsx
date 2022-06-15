@@ -9,8 +9,10 @@ import api from '../services/api';
 import maskPhone from '../utils/maskPhone';
 
 interface PostContextData {
-  listPost(): void;
+  listUserPosts(): void;
   userPosts: IPostDTO[];
+  listAllPosts(): void;
+  allPosts: IPostDTO[];
   listLastPosts(): void;
   lastPosts: IPostDTO[];
   listCategories(): void;
@@ -47,10 +49,11 @@ const PostContext = createContext<PostContextData>({} as PostContextData);
 
 const PostProvider: React.FC = ({ children }) => {
   const [userPosts, setUserPosts] = useState<IPostDTO[]>([]);
+  const [allPosts, setAllPosts] = useState<IPostDTO[]>([]);
   const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
   const [categories, setCategories] = useState<ICategoriesDTO[]>([]);
 
-  const listPost = useCallback(async () => {
+  const listUserPosts = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
       const postsFormatted = response.data.map(post => {
         const phoneNumberFormatted = maskPhone(post.phone_number);
@@ -62,6 +65,21 @@ const PostProvider: React.FC = ({ children }) => {
       });
 
       setUserPosts(postsFormatted);
+    });
+  }, []);
+
+  const listAllPosts = useCallback(async () => {
+    await api.get<IPostDTO[]>('/posts').then(response => {
+      const postsFormatted = response.data.map(post => {
+        const phoneNumberFormatted = maskPhone(post.phone_number);
+
+        return {
+          ...post,
+          phone_number: phoneNumberFormatted,
+        };
+      });
+
+      setAllPosts(postsFormatted);
     });
   }, []);
 
@@ -79,13 +97,16 @@ const PostProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     listCategories();
-  }, [listCategories]);
+    listAllPosts();
+  }, [listCategories, listAllPosts]);
 
   return (
     <PostContext.Provider
       value={{
-        listPost,
+        listUserPosts,
         userPosts,
+        listAllPosts,
+        allPosts,
         listLastPosts,
         lastPosts,
         listCategories,

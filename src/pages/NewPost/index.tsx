@@ -56,8 +56,6 @@ const NewPost: React.FC = () => {
           category_name: Yup.string(),
         });
 
-        console.log(data);
-
         await schema.validate(data, {
           abortEarly: false,
         });

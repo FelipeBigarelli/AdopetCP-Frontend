@@ -9,6 +9,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
+  margin-top: 16px;
   padding: 16px;
   width: 100%;
   max-width: 260px;
@@ -21,8 +22,8 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
 
-  & {
-    margin-top: 16px;
+  & + div {
+    margin-top: 8px;
   }
 
   ${props =>
@@ -30,17 +31,13 @@ export const Container = styled.div<ContainerProps>`
     css`
       color: #ff0000;
       border-color: #ff0000;
-
-      svg {
-        color: #ff0000;
-      }
     `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #0800f0;
-      border-color: #d200ff;
+      color: #00d4ff;
+      border-color: #00d4ff;
     `}
 
   ${props =>
@@ -61,8 +58,10 @@ export const Container = styled.div<ContainerProps>`
 
   input {
     background: transparent;
+    width: 100%;
     flex: 1;
     border: 0;
+    padding-top: 3px;
 
     &::placeholder {
       color: #666360;
@@ -77,7 +76,6 @@ export const Container = styled.div<ContainerProps>`
 export const Error = styled(ToolTip)`
   height: 20px;
   margin-left: 16px;
-  position: relative;
 
   svg {
     margin: 0;

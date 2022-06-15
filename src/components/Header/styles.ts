@@ -51,6 +51,15 @@ export const Content = styled.div`
       padding-right: 12px;
     }
 
+    #header-avatar {
+      width: 100%;
+      max-width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      padding-right: 0;
+      margin-right: 16px;
+    }
+
     &:hover {
       color: #ffe100;
       padding-bottom: 8px;

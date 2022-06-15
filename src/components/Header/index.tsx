@@ -9,6 +9,13 @@ import logoutImg from '../../assets/logoutImg.png';
 import userProfileImg from '../../assets/userProfileIcon.png';
 import { useAuth } from '../../hooks/auth';
 
+interface IProfile {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
+
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();
 
@@ -28,8 +35,8 @@ const Header: React.FC = () => {
           <img src={logoImg} alt="AdopetCP" />
         </a>
 
-        <a className="menu-item" href="/profile">
-          <img src={userProfileImg} alt="" />
+        <a id="menu-item-avatar" href="/profile">
+          <img src={user.avatar_url} alt="" id="header-avatar" />
           Perfil
         </a>
 
