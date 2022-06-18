@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import Select from 'react-select';
 
 import { Container, Content, SelectCategory } from './styles';
 
@@ -22,19 +21,7 @@ const NewPost: React.FC = () => {
   const { addToast } = useToast();
   const { categories } = usePost();
   const history = useHistory();
-  const [categoryValue, setCategoryValue] = useState('Selecione');
-
-  const cats: any = [];
-  categories.forEach(category => {
-    cats.push(category.category_name);
-  });
-
-  const options = [
-    { value: 'Cachorros', label: 'Cachorros' },
-    { value: 'Gatos', label: 'Gatos' },
-    { value: 'Roedores', label: 'Roedores' },
-    { value: 'Aves', label: 'Aves' },
-  ];
+  const [categoryValue, setCategoryValue] = useState('Selecione uma categoria');
 
   const handleSubmit = useCallback(
     async (data: IPostDTO) => {
@@ -53,7 +40,9 @@ const NewPost: React.FC = () => {
           district: Yup.string().required('Bairro obrigatório'),
           street: Yup.string().required('Rua obrigatória'),
           house_number: Yup.string(),
-          category_name: Yup.string(),
+          category_name: Yup.string().required(
+            'Selecione uma categoria abaixo',
+          ),
         });
 
         await schema.validate(data, {
@@ -62,7 +51,7 @@ const NewPost: React.FC = () => {
 
         await api.post('/posts', data);
 
-        history.push('/dashboard');
+        history.push(`/post-images`);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -72,8 +61,8 @@ const NewPost: React.FC = () => {
           addToast({
             type: 'error',
             title: 'Erro na postagem',
-            description: JSON.stringify(errors),
-            // 'Ocorreu um erro ao fazer a postagem, verifique as informações',
+            description:
+              'Ocorreu um erro ao fazer a postagem, verifique as informações',
           });
         }
       }
@@ -81,8 +70,12 @@ const NewPost: React.FC = () => {
     [history, addToast],
   );
 
-  const handleChangeCategory = useCallback(e => {
-    setCategoryValue(e);
+  const handleChangeCategory = useCallback((category): HTMLInputElement => {
+    const validateCategory = category.target.value;
+
+    setCategoryValue(validateCategory);
+
+    return validateCategory;
   }, []);
 
   return (
@@ -101,18 +94,23 @@ const NewPost: React.FC = () => {
           <Input name="district" placeholder="Bairro" />
           <Input name="street" placeholder="Rua" />
           <Input name="house_number" placeholder="Número (opcional)" />
+          <Input
+            name="category_name"
+            placeholder="Selecione a categoria"
+            readOnly
+            id="category-input"
+            value={categoryValue}
+          />
 
           <SelectCategory>
             <strong>Selecione uma categoria</strong>
 
-            <Select value={categoryValue} options={cats} />
-            {/* <select
+            <select
               name="category_name"
               id="categories"
               onChange={e => {
-                handleChangeCategory(e.target.value);
+                handleChangeCategory(e);
               }}
-              value={caterogyValue}
             >
               <option id="Selecione" value="Selecione">
                 Selecione
@@ -127,7 +125,7 @@ const NewPost: React.FC = () => {
                   {category.category_name}
                 </option>
               ))}
-            </select> */}
+            </select>
           </SelectCategory>
 
           <Button type="submit">Próximo</Button>

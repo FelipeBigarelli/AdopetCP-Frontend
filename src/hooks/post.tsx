@@ -17,6 +17,8 @@ interface PostContextData {
   lastPosts: IPostDTO[];
   listCategories(): void;
   categories: ICategoriesDTO[];
+  findByLastCreated(): void;
+  lastCreated: IPostDTO | undefined;
 }
 
 interface IImagesDTO {
@@ -52,6 +54,7 @@ const PostProvider: React.FC = ({ children }) => {
   const [allPosts, setAllPosts] = useState<IPostDTO[]>([]);
   const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
   const [categories, setCategories] = useState<ICategoriesDTO[]>([]);
+  const [lastCreated, setLastCreated] = useState<IPostDTO>();
 
   const listUserPosts = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
@@ -95,6 +98,16 @@ const PostProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const findByLastCreated = useCallback(async () => {
+    const lastPostCreated = await api
+      .get('/posts/last-created')
+      .then(response => {
+        setLastCreated(response.data);
+      });
+
+    return lastPostCreated;
+  }, []);
+
   useEffect(() => {
     listCategories();
     listAllPosts();
@@ -111,6 +124,8 @@ const PostProvider: React.FC = ({ children }) => {
         lastPosts,
         listCategories,
         categories,
+        findByLastCreated,
+        lastCreated,
       }}
     >
       {children}

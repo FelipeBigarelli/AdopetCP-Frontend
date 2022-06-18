@@ -58,6 +58,7 @@ export const Content = styled.div`
       border-radius: 50%;
       padding-right: 0;
       margin-right: 16px;
+      object-fit: cover;
     }
 
     &:hover {

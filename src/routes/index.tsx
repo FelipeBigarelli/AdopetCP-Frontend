@@ -10,6 +10,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import Profile from '../pages/Profile';
 import NewPost from '../pages/NewPost';
+import PostImages from '../pages/PostImages';
 import Animals from '../pages/Animals';
 
 const Routes: React.FC = () => (
@@ -21,6 +22,7 @@ const Routes: React.FC = () => (
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/new-post" component={NewPost} isPrivate />
+    <Route path="/post-images" component={PostImages} isPrivate />
     <Route path="/animals" component={Animals} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />
   </Switch>

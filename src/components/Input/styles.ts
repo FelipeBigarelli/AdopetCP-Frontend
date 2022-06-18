@@ -22,9 +22,9 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
 
-  & + div {
+  /* & + div {
     margin-top: 8px;
-  }
+  } */
 
   ${props =>
     props.isErrored &&
@@ -37,7 +37,7 @@ export const Container = styled.div<ContainerProps>`
     props.isFocused &&
     css`
       color: #00d4ff;
-      border-color: #00d4ff;
+      border-color: #d200ff;
     `}
 
   ${props =>
