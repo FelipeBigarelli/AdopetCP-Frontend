@@ -1,34 +1,133 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
 
-export const PostContent = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-bottom: 16px;
+  background: #00d4ff;
+  border-radius: 8px;
+
+  width: 240px;
+  height: 320px;
+  margin: 16px 8px 0 8px;
+
+  transition: all 0.2s;
+
+  & + & {
+    margin-bottom: 24px;
+  }
+
+  p.category {
+    font-size: 12px;
+    padding: 2px 8px;
+    color: #d200ff;
+    text-shadow: 1px 1px #000;
+  }
+
+  img {
+    height: 160px;
+    width: inherit;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    border: 2px solid #00d4ff;
+
+    background-color: #fff;
+  }
+
+  &:hover {
+    border-color: #d200ff;
+    box-shadow: 0 0 0.5em #00d4ff;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: ${shade(0.05, '#fff')};
+  border-radius: 8px;
+
+  height: 100%;
+  margin: 4px 2px 2px;
+  padding: 4px;
 
   .description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    height: 100%;
+    max-height: 88px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff; /* color of the scroll thumb */
+      border-radius: 20px; /* roundness of the scroll thumb */
+      border: 2px solid #d200ff;
+      padding-bottom: 4px;
+    }
 
     strong {
-      font-size: 24px;
+      font-size: 22px;
+      margin-bottom: 8px;
     }
 
     p {
+      word-wrap: break-word;
       color: #696969;
+      padding: 4px 4px 4px 0;
     }
   }
 
   .whatsapp {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
 
     svg {
-      padding-bottom: 4px;
+      color: #37ff0e;
+      margin-right: 4px;
+      margin-top: -2px;
     }
-  } */
+
+    a {
+      text-decoration: none;
+    }
+  }
+`;
+
+export const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px 6px 0 4px;
+
+  img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+    background: transparent;
+  }
+
+  #whatsapp {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+
+    svg {
+      height: 22px;
+      color: #37ff0e;
+    }
+  }
 `;

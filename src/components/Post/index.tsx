@@ -1,42 +1,41 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useAuth } from '../../hooks/auth';
+import IPostDTO from './dtos/IPostDTO';
 
-import { Container, PostContent } from './styles';
+import { Container, Content, Footer } from './styles';
+import img from '../../assets/cat.png';
+import maskPhone from '../../utils/maskPhone';
 
-// interface IPostProps {
-//   id?: string;
-//   title: string;
-//   description: string;
-//   photo: string;
-//   phone_number: string;
-//   cep?: string;
-//   city?: string;
-//   district?: string;
-//   street?: string;
-//   house_number?: string;
-// }
+interface IPostProps {
+  post: IPostDTO;
+}
 
-// interface IProps {
-//   post: IPostProps;
-// }
+const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
+  const { user } = useAuth();
 
-const Post: React.FC = ({ children }) => {
   return (
     <Container>
-      {children}
-      {/* <img src={post.photo} alt="Animal" />
+      <img src={img} id="post-images" alt="Animal" />
+      <p className="category">{post.category_name}</p>
 
-      <PostContent>
+      <Content>
         <div className="description">
           <strong>{post.title}</strong>
           <p>{post.description}</p>
         </div>
 
-        <div className="whatsapp">
-          <FaWhatsapp size={24} />
-          <p>{post.phone_number}</p>
-        </div>
-      </PostContent> */}
+        <Footer>
+          <img src={user.avatar_url} alt="Avatar" />
+
+          <div className="whatsapp">
+            <FaWhatsapp size={24} />
+            <a href={`https://wa.me/${post.phone_number}`}>
+              {maskPhone(post.phone_number)}
+            </a>
+          </div>
+        </Footer>
+      </Content>
     </Container>
   );
 };

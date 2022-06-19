@@ -42,11 +42,11 @@ const PostImages: React.FC = () => {
           },
         });
 
-        history.push('/profile');
+        history.push('/dashboard');
 
         addToast({
           type: 'success',
-          title: 'Imagens salvas',
+          title: 'Postagem realizada com sucesso',
         });
       }
     },

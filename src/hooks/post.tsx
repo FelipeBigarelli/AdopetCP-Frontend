@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import IPostDTO from '../components/Post/dtos/IPostDTO';
 import api from '../services/api';
 import maskPhone from '../utils/maskPhone';
 
@@ -19,27 +20,8 @@ interface PostContextData {
   categories: ICategoriesDTO[];
   findByLastCreated(): void;
   lastCreated: IPostDTO | undefined;
-}
-
-interface IImagesDTO {
-  id?: string;
-  image_name?: string;
-  post_id: string;
-  user_id: string;
-}
-
-interface IPostDTO {
-  id?: string;
-  title?: string;
-  description?: string;
-  phone_number?: string;
-  cep?: string;
-  city?: string;
-  district?: string;
-  street?: string;
-  house_number?: string;
-  category_name?: string;
-  images: IImagesDTO;
+  findById(id: string): void;
+  postById: IPostDTO | undefined;
 }
 
 interface ICategoriesDTO {
@@ -55,19 +37,11 @@ const PostProvider: React.FC = ({ children }) => {
   const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
   const [categories, setCategories] = useState<ICategoriesDTO[]>([]);
   const [lastCreated, setLastCreated] = useState<IPostDTO>();
+  const [postById, setPostById] = useState<IPostDTO>();
 
   const listUserPosts = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
-      const postsFormatted = response.data.map(post => {
-        const phoneNumberFormatted = maskPhone(post.phone_number);
-
-        return {
-          ...post,
-          phone_number: phoneNumberFormatted,
-        };
-      });
-
-      setUserPosts(postsFormatted);
+      setUserPosts(response.data);
     });
   }, []);
 
@@ -108,10 +82,24 @@ const PostProvider: React.FC = ({ children }) => {
     return lastPostCreated;
   }, []);
 
+  const findById = useCallback(async (id: string) => {
+    const findPostById = await api
+      .get<IPostDTO>(`/posts/${id}`)
+      .then(response => {
+        setPostById(response.data);
+      });
+
+    return findPostById;
+  }, []);
+
   useEffect(() => {
     listCategories();
     listAllPosts();
   }, [listCategories, listAllPosts]);
+
+  useEffect(() => {
+    listUserPosts();
+  }, [listUserPosts]);
 
   return (
     <PostContext.Provider
@@ -126,6 +114,8 @@ const PostProvider: React.FC = ({ children }) => {
         categories,
         findByLastCreated,
         lastCreated,
+        findById,
+        postById,
       }}
     >
       {children}

@@ -1,11 +1,5 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { FaWhatsapp, FaUser } from 'react-icons/fa';
+import React, { ChangeEvent, useCallback, useRef } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -15,7 +9,6 @@ import { FiCamera, FiMail } from 'react-icons/fi';
 
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
-import catImg from '../../assets/filhotes-dashboard.jpg';
 
 import { IUserProfileDTO } from '../../dtos/IUserProfile';
 
@@ -29,24 +22,18 @@ import Modal from '../../components/Modal';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import {
-  Container,
-  Content,
-  AvatarInput,
-  PostsContainer,
-  Post,
-  PostContent,
-  PostFooter,
-} from './styles';
+import { Container, Content, AvatarInput, PostsContainer } from './styles';
+import Post from '../../components/Post';
+import Footer from '../../components/Footer';
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { user, updateUser } = useAuth();
   const history = useHistory();
-  const { addToast } = useToast();
 
+  const { user, updateUser } = useAuth();
   const { isShown, toggle } = useModal();
-  const { listUserPosts, userPosts } = usePost();
+  const { userPosts } = usePost();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: IUserProfileDTO) => {
@@ -108,13 +95,10 @@ const Profile: React.FC = () => {
     [addToast, updateUser],
   );
 
-  useEffect(() => {
-    listUserPosts();
-  }, [listUserPosts]);
-
   return (
     <>
       <Header />
+
       <Container>
         <Content>
           <Modal
@@ -155,35 +139,16 @@ const Profile: React.FC = () => {
           </button>
 
           <h1>Minhas postagens</h1>
+
           <PostsContainer>
             {userPosts.map(post => (
-              <>
-                <Post key={post.id}>
-                  <img src={catImg} alt="Animal" />
-
-                  <PostContent>
-                    <div className="post-content">
-                      <div className="description">
-                        <strong>{post.title}</strong>
-                        <p>{post.description}</p>
-                      </div>
-
-                      <PostFooter>
-                        <img src={user.avatar_url} alt="Avatar" />
-
-                        <div id="whatsapp">
-                          <FaWhatsapp size={24} />
-                          <p>{post.phone_number}</p>
-                        </div>
-                      </PostFooter>
-                    </div>
-                  </PostContent>
-                </Post>
-              </>
+              <Post key={post.id} post={post} />
             ))}
           </PostsContainer>
         </Content>
       </Container>
+
+      <Footer />
     </>
   );
 };

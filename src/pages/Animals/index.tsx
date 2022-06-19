@@ -1,48 +1,38 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
-import Header from '../../components/Header';
+import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
+
 import { usePost } from '../../hooks/post';
-import api from '../../services/api';
-import maskPhone from '../../utils/maskPhone';
 
-import {
-  Container,
-  Content,
-  Filter,
-  AllPosts,
-  Post,
-  PostContent,
-} from './styles';
+import Header from '../../components/Header';
+import Post from '../../components/Post';
 
-interface ICategoriesDTO {
-  id?: string;
-  category_name: string;
-}
+import { Container, Content, Filter, AllPosts } from './styles';
+import IPostDTO from '../../components/Post/dtos/IPostDTO';
 
 const Animals: React.FC = () => {
   const { categories, allPosts } = usePost();
-  const [category, setCategory] = useState<string>();
+  const [filterByCategory, setFilterByCategory] = useState('Selecione');
 
-  const handleChangeCategory = useCallback(async (category_name: string) => {
-    const changeCategory = await api
-      .get('/posts/list-by-category', {
-        params: {
-          category_name,
-        },
-        data: category_name,
-      })
-      .then(response => {
-        setCategory(response.data);
+  const handleChangeCategory = useCallback(
+    async (e: ChangeEvent<HTMLSelectElement>) => {
+      setFilterByCategory(e.target.value);
+    },
+    [],
+  );
 
-        console.log(response.data);
-      });
+  const getFilteredList = useCallback(() => {
+    if (filterByCategory === 'Selecione') {
+      return allPosts;
+    }
 
-    return changeCategory;
-  }, []);
+    return allPosts.filter(post => post.category_name === filterByCategory);
+  }, [allPosts, filterByCategory]);
 
-  useEffect(() => {
-    console.log(category);
-  }, [category]);
+  const filteredList: IPostDTO[] = useMemo(() => {
+    const filtered = getFilteredList();
+
+    return filtered;
+  }, [getFilteredList]);
+
   return (
     <>
       <Header />
@@ -52,47 +42,27 @@ const Animals: React.FC = () => {
         <Content>
           <Filter>
             <h3>Filtrar por categoria</h3>
-            <select id="categories" onChange={() => handleChangeCategory}>
+            <select
+              id="categories"
+              defaultValue={filterByCategory}
+              onChange={e => handleChangeCategory(e)}
+            >
               <option key="selecione" value="Selecione">
                 Selecione
               </option>
 
               {categories.map(cat => (
-                <option key={cat.id} value={cat.id}>
+                <option key={cat.category_name} value={cat.category_name}>
                   {cat.category_name}
                 </option>
               ))}
             </select>
           </Filter>
           <AllPosts>
-            {allPosts.map(post => (
-              <Post key={post.id}>
-                <img src="{post.images.image_name}" alt="Animal" />
-                <p className="category">{post.category_name}</p>
-
-                <PostContent>
-                  <div className="description">
-                    <strong>{post.title}</strong>
-                    <p>{post.description}</p>
-                  </div>
-
-                  <div className="whatsapp">
-                    <FaWhatsapp size={24} />
-                    <a href={`https://wa.me/${post.phone_number}`}>
-                      {maskPhone(post.phone_number)}
-                    </a>
-                  </div>
-                </PostContent>
-              </Post>
+            {filteredList.map(element => (
+              <Post key={element.id} post={element} />
             ))}
           </AllPosts>
-          {/* <h1>Categorias</h1>
-
-          <Categories>
-            {categories.map(category => (
-              <h3 key={category.id}>{category.category_name}</h3>
-            ))}
-          </Categories> */}
         </Content>
       </Container>
     </>

@@ -49,6 +49,7 @@ export const AvatarInput = styled.div`
     position: absolute;
     width: 120px;
     height: 120px;
+    object-fit: cover;
     border-radius: 50%;
     z-index: 1;
   }
@@ -90,122 +91,10 @@ export const PostsContainer = styled.div`
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
+  padding-bottom: 96px;
   flex-wrap: wrap;
 
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-`;
-
-export const Post = styled.div`
-  width: 360px;
-  min-width: 360px;
-  height: 380px;
-
-  display: flex;
-  flex-direction: column;
-
-  border: 1px solid #00d4ff;
-  background-color: #00d4ff;
-
-  border-radius: 8px;
-  transition: all 0.2s;
-  margin: 16px 32px;
-
-  &:hover {
-    border-color: #d200ff;
-    box-shadow: 0 0 0.5em #ff2000;
-  }
-
-  img {
-    /* min-height: 240px; */
-    height: 240px;
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 4px;
-  }
-`;
-
-export const PostContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2px 2px 2px;
-
-  .post-content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: inherit;
-    align-items: center;
-    justify-content: space-between;
-
-    background: #fff;
-    border-radius: 4px;
-
-    .description {
-      width: inherit;
-      height: 90px;
-      padding: 4px;
-
-      overflow-y: scroll;
-
-      &::-webkit-scrollbar {
-        width: 10px;
-        height: 12px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-        border-radius: 20px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: #fff; /* color of the scroll thumb */
-        border-radius: 20px; /* roundness of the scroll thumb */
-        border: 2px solid #d200ff;
-        padding-bottom: 4px;
-      }
-
-      strong {
-        font-size: 22px;
-        margin-bottom: 8px;
-      }
-
-      p {
-        word-wrap: break-word;
-        color: #696969;
-        padding: 1px;
-      }
-    }
-  }
-`;
-
-export const PostFooter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 6px;
-
-  img {
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-  }
-
-  #whatsapp {
-    display: flex;
-    width: inherit;
-    justify-content: flex-end;
-    align-items: center;
-
-    svg {
-      height: 22px;
-      color: #37ff0e;
-    }
-  }
 `;
