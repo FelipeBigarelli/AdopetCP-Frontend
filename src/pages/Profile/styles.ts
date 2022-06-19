@@ -97,4 +97,8 @@ export const PostsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+  }
 `;

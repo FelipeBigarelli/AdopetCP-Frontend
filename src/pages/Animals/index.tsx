@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react';
 
 import { usePost } from '../../hooks/post';
 
@@ -7,6 +13,7 @@ import Post from '../../components/Post';
 
 import { Container, Content, Filter, AllPosts } from './styles';
 import IPostDTO from '../../components/Post/dtos/IPostDTO';
+import Footer from '../../components/Footer';
 
 const Animals: React.FC = () => {
   const { categories, allPosts } = usePost();
@@ -65,6 +72,8 @@ const Animals: React.FC = () => {
           </AllPosts>
         </Content>
       </Container>
+
+      <Footer />
     </>
   );
 };

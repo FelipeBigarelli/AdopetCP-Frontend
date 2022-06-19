@@ -18,11 +18,7 @@ import { usePost } from '../../hooks/post';
 import maskPhone from '../../utils/maskPhone';
 
 const Dashboard: React.FC = () => {
-  const { listLastPosts, lastPosts } = usePost();
-
-  useEffect(() => {
-    listLastPosts();
-  }, [listLastPosts]);
+  const { lastPosts } = usePost();
 
   return (
     <Container>

@@ -47,16 +47,7 @@ const PostProvider: React.FC = ({ children }) => {
 
   const listAllPosts = useCallback(async () => {
     await api.get<IPostDTO[]>('/posts').then(response => {
-      const postsFormatted = response.data.map(post => {
-        const phoneNumberFormatted = maskPhone(post.phone_number);
-
-        return {
-          ...post,
-          phone_number: phoneNumberFormatted,
-        };
-      });
-
-      setAllPosts(postsFormatted);
+      setAllPosts(response.data);
     });
   }, []);
 
@@ -100,6 +91,10 @@ const PostProvider: React.FC = ({ children }) => {
   useEffect(() => {
     listUserPosts();
   }, [listUserPosts]);
+
+  useEffect(() => {
+    listLastPosts();
+  }, [listLastPosts]);
 
   return (
     <PostContext.Provider

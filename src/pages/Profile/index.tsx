@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useCallback, useRef } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
@@ -32,7 +38,7 @@ const Profile: React.FC = () => {
 
   const { user, updateUser } = useAuth();
   const { isShown, toggle } = useModal();
-  const { userPosts } = usePost();
+  const { userPosts, findById } = usePost();
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(
@@ -142,7 +148,17 @@ const Profile: React.FC = () => {
 
           <PostsContainer>
             {userPosts.map(post => (
-              <Post key={post.id} post={post} />
+              <a
+                key={post.id}
+                href={`/posts/${post.id}`}
+                onClick={() => {
+                  if (post.id) {
+                    findById(post.id);
+                  }
+                }}
+              >
+                <Post key={post.id} post={post} />
+              </a>
             ))}
           </PostsContainer>
         </Content>

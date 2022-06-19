@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 32px 0;
+  padding: 32px 0 96px 0;
 `;
 
 export const Filter = styled.div`

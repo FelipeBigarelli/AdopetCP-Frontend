@@ -53,6 +53,10 @@ const PostImages: React.FC = () => {
     [addToast, lastCreated, history],
   );
 
+  const handleSkipImages = useCallback(() => {
+    history.push('/dashboard');
+  }, [history]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       findByLastCreated();
@@ -80,6 +84,10 @@ const PostImages: React.FC = () => {
           />
         </label>
       </Content>
+
+      <button type="button" onClick={handleSkipImages}>
+        Finalizar
+      </button>
 
       <Footer />
     </Container>
