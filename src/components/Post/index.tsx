@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import Carousel from 'react-elastic-carousel';
+
 import { useAuth } from '../../hooks/auth';
 import IPostDTO from './dtos/IPostDTO';
 
 import { Container, Content, Footer } from './styles';
 import img from '../../assets/cat.png';
 import maskPhone from '../../utils/maskPhone';
+import IPostImagesDTO from './dtos/IPostImagesDTO';
 
 interface IPostProps {
   post: IPostDTO;
@@ -13,10 +16,34 @@ interface IPostProps {
 
 const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
   const { user } = useAuth();
+  const [imgArray, setImgArray] = useState<IPostImagesDTO[]>([]);
+
+  const getImages = useCallback(() => {
+    if (post.images) {
+      setImgArray(post.images);
+    }
+  }, [post.images]);
+
+  useEffect(() => {
+    getImages();
+  }, [getImages]);
 
   return (
     <Container>
-      <img src={img} id="post-images" alt="Animal" />
+      <Carousel isRTL className="carousel">
+        {imgArray &&
+          imgArray?.map(item => (
+            <img
+              src={item.image_url}
+              key={item.id}
+              id="post-images"
+              alt="Animal"
+            />
+          ))}
+
+        {/* <img src={img} alt="DefaultImg" /> */}
+      </Carousel>
+
       <p className="category">{post.category_name}</p>
 
       <Content>

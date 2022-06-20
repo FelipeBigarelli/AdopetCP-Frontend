@@ -16,7 +16,7 @@ export const Content = styled.div`
 
   background: #fff;
 
-  button {
+  button#edit-button {
     margin: 32px 0 0 62px;
     padding: 4px 8px;
 
@@ -97,8 +97,26 @@ export const PostsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+`;
 
-  a {
+export const PostContent = styled.div`
+  a#edit-post {
     text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+
+    text-shadow: -0.5px -0.5px 0px #ff0000;
+
+    font-weight: bold;
+
+    position: relative;
+    bottom: 140px;
+    left: 205px;
+
+    transition: color 0.2s;
+
+    &:hover {
+      color: #cecece;
+    }
   }
 `;

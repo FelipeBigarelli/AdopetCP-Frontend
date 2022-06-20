@@ -10,7 +10,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: center;
 
-  padding-top: 64px;
+  padding-top: 32px;
   margin: 0 auto;
 
   width: 100%;
@@ -21,7 +21,7 @@ export const Content = styled.div`
 
 export const Welcome = styled.div`
   h1 {
-    padding-bottom: 64px;
+    padding-bottom: 40px;
   }
 
   h2 {
@@ -41,7 +41,7 @@ export const LastPosts = styled.div`
 
   border-radius: 8px;
   padding: 12px 0 10px 0;
-  background: #00d4ff;
+  background: #d200ff;
 
   &::-webkit-scrollbar {
     width: 12px;

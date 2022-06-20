@@ -11,6 +11,14 @@ export const Container = styled.div`
   h1 {
     padding-top: 32px;
   }
+
+  #grass {
+    position: absolute;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+  }
 `;
 
 export const Content = styled.div`

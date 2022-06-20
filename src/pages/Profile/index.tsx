@@ -28,7 +28,13 @@ import Modal from '../../components/Modal';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, Content, AvatarInput, PostsContainer } from './styles';
+import {
+  Container,
+  Content,
+  AvatarInput,
+  PostsContainer,
+  PostContent,
+} from './styles';
 import Post from '../../components/Post';
 import Footer from '../../components/Footer';
 
@@ -140,7 +146,7 @@ const Profile: React.FC = () => {
               <Button type="submit">Alterar</Button>
             </Form>
           </Modal>
-          <button type="button" onClick={toggle}>
+          <button type="button" id="edit-button" onClick={toggle}>
             Editar perfil
           </button>
 
@@ -148,17 +154,21 @@ const Profile: React.FC = () => {
 
           <PostsContainer>
             {userPosts.map(post => (
-              <a
-                key={post.id}
-                href={`/posts/${post.id}`}
-                onClick={() => {
-                  if (post.id) {
-                    findById(post.id);
-                  }
-                }}
-              >
+              <PostContent>
                 <Post key={post.id} post={post} />
-              </a>
+                <a
+                  id="edit-post"
+                  key={post.id}
+                  href={`/posts/${post.id}`}
+                  onClick={() => {
+                    if (post.id) {
+                      findById(post.id);
+                    }
+                  }}
+                >
+                  Editar
+                </a>
+              </PostContent>
             ))}
           </PostsContainer>
         </Content>

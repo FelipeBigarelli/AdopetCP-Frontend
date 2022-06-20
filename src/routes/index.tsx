@@ -14,6 +14,7 @@ import PostImages from '../pages/PostImages';
 import Animals from '../pages/Animals';
 import EditPost from '../pages/EditPost';
 import AboutAdopet from '../pages/AboutAdopet';
+import EditPostImages from '../pages/EditPostImages';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -28,6 +29,7 @@ const Routes: React.FC = () => (
     <Route path="/animals" component={Animals} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />
     <Route path="/posts/:id" component={EditPost} isPrivate />
+    <Route path="/edit-post-images" component={EditPostImages} isPrivate />
     <Route path="/about" component={AboutAdopet} isPrivate />
   </Switch>
 );

@@ -13,7 +13,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  button {
+  #finish-button {
     border: none;
     border-radius: 8px;
 
@@ -26,7 +26,7 @@ export const Container = styled.div`
     transition: all 0.2s;
 
     &:hover {
-      background: ${shade(0.1, '#00d4ff')};
+      background: #d200ff;
       color: #fff;
     }
   }
@@ -38,17 +38,18 @@ export const Content = styled.div`
 
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   padding: 16px;
   margin-bottom: 32px;
-
   background: #00d4ff;
   border-radius: 16px;
 
   label {
-    width: 320px;
-    height: 320px;
+    width: 64px;
+    height: 64px;
+    padding: 8px;
     background: transparent;
 
     border-radius: 16px;
@@ -60,6 +61,8 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-bottom: 24px;
 
     input {
       display: none;
@@ -79,6 +82,47 @@ export const Content = styled.div`
       svg {
         padding: 8px;
       }
+    }
+  }
+`;
+
+export const PostImages = styled.div`
+  display: flex;
+
+  .edit-images {
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+      position: absolute;
+      margin: 4px 8px;
+
+      height: 16px;
+      width: 16px;
+
+      color: #ff0000;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #d200ff;
+      }
+
+      svg {
+        height: 16px;
+        width: 16px;
+      }
+
+      background: transparent;
+      border: none;
+    }
+
+    img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+
+      margin: 0 4px;
     }
   }
 `;

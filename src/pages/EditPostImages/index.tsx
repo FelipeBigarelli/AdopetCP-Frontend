@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { FiCamera } from 'react-icons/fi';
-import { Container, Content } from './styles';
+import { FiCamera, FiXCircle } from 'react-icons/fi';
+import { Container, Content, PostImages } from './styles';
 
 import { useToast } from '../../hooks/toast';
 
@@ -12,8 +12,8 @@ import Footer from '../../components/Footer';
 import { usePost } from '../../hooks/post';
 import api from '../../services/api';
 
-const PostImages: React.FC = () => {
-  const { findByLastCreated, lastCreated } = usePost();
+const EditPostImages: React.FC = () => {
+  const { postById } = usePost();
   const { addToast } = useToast();
 
   const history = useHistory();
@@ -22,43 +22,36 @@ const PostImages: React.FC = () => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const { files } = e.target;
       const data = new FormData();
-
       if (files) {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < files.length; i++) {
           data.append('images', files[i]);
         }
-
-        api.post(`/posts/images/${lastCreated?.id}`, data, {
+        api.post(`/posts/images/${postById?.id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-
-        history.push('/dashboard');
-
+        history.push('/profile');
         addToast({
           type: 'success',
           title: 'Postagem realizada com sucesso',
         });
       }
     },
-    [addToast, lastCreated, history],
+    [addToast, postById, history],
+  );
+
+  const handleRemoveImage = useCallback(
+    (id: string | undefined) => {
+      api.delete(`/posts/${postById?.id}/images/${id}`);
+    },
+    [postById?.id],
   );
 
   const handleSkipImages = useCallback(() => {
     history.push('/dashboard');
   }, [history]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      findByLastCreated();
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [findByLastCreated]);
 
   return (
     <Container>
@@ -76,10 +69,26 @@ const PostImages: React.FC = () => {
             onChange={handleUploadImages}
           />
         </label>
+
+        <PostImages>
+          {postById?.images?.map(image => (
+            <div className="edit-images">
+              <img src={image.image_url} alt="PostImage" />
+              <button
+                type="button"
+                key={image.id}
+                id="delete-image"
+                onClick={() => handleRemoveImage(image.id)}
+              >
+                <FiXCircle size={8} />
+              </button>
+            </div>
+          ))}
+        </PostImages>
       </Content>
 
-      <button type="button" onClick={handleSkipImages}>
-        Postar sem Imagem
+      <button type="button" id="finish-button" onClick={handleSkipImages}>
+        Finalizar
       </button>
 
       <Footer />
@@ -87,4 +96,4 @@ const PostImages: React.FC = () => {
   );
 };
 
-export default PostImages;
+export default EditPostImages;

@@ -56,7 +56,7 @@ const EditPost: React.FC = () => {
 
         await api.put(`/posts/edit/${postById?.id}`, data);
 
-        history.push(`/post-images`);
+        history.push(`/edit-post-images`);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);

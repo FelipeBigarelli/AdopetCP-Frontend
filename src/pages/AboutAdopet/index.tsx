@@ -3,6 +3,7 @@ import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import aboutDog from '../../assets/aboutDog.png';
+import aboutGrass from '../../assets/about-grass.png';
 
 import { Container, Content, Text } from './styles';
 
@@ -25,6 +26,8 @@ const AboutAdopet: React.FC = () => {
             </h2>
           </Text>
         </Content>
+
+        <img src={aboutGrass} alt="Grass" id="grass" />
       </Container>
 
       <Footer />

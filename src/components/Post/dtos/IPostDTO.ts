@@ -11,7 +11,7 @@ interface IPostDTO {
   street?: string;
   house_number?: string;
   category_name?: string;
-  images?: IPostImagesDTO;
+  images?: IPostImagesDTO[] | undefined;
 }
 
 export default IPostDTO;
