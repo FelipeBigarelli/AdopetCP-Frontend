@@ -23,7 +23,6 @@ const EditPost: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  const { user } = useAuth();
   const { postById, findById, categories } = usePost();
   const idParam = useParams<{ id: string }>();
 

@@ -31,8 +31,15 @@ export const Content = styled.div`
     padding: 16px;
     font-size: 20px;
     text-decoration: none;
+    border-left: 0.5px solid #fff;
 
-    color: #ff0000;
+    &:last-child {
+      border-right: 1px solid #fff;
+    }
+
+    color: #fff;
+    text-shadow: -0.5px -0.5px 0px #ff0000, -0.5px 0.5px 0px #ff0000,
+      0.5px -0.5px 0px #ff0000, 0.5px 0px 0px #ff0000;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 500;
 
@@ -45,6 +52,12 @@ export const Content = styled.div`
     text-align: center;
 
     transition: all 0.2s;
+
+    &:hover {
+      color: #ffe100;
+      padding-bottom: 8px;
+      border-bottom-color: #ffe100;
+    }
 
     img {
       height: 48px;
@@ -59,11 +72,6 @@ export const Content = styled.div`
       padding-right: 0;
       margin-right: 16px;
       object-fit: cover;
-    }
-
-    &:hover {
-      color: #ffe100;
-      padding-bottom: 8px;
     }
   }
 `;

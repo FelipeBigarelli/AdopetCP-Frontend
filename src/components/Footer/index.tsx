@@ -1,20 +1,22 @@
 import React from 'react';
 
-import { Container, Content, FooterImg, FooterMenu } from './styles';
+import { Container, Content } from './styles';
 
 import logoImg from '../../assets/logo.png';
+import aboutImg from '../../assets/about.png';
 
 const Footer: React.FC = () => {
   return (
     <Container>
       <Content>
-        <FooterImg>
+        <a href="/dashboard">
           <img src={logoImg} alt="" />
-        </FooterImg>
+        </a>
 
-        <FooterMenu>
-          <a href="/about">Sobre o AdopetCP</a>
-        </FooterMenu>
+        <a href="/about">
+          <img src={aboutImg} alt="" />
+          Sobre o AdopetCP
+        </a>
       </Content>
     </Container>
   );

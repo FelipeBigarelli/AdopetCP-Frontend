@@ -19,19 +19,41 @@ export const Content = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-`;
+  justify-content: space-between;
 
-export const FooterImg = styled.div`
-  display: flex;
-  align-items: center;
+  a {
+    display: flex;
+    align-items: center;
 
-  img {
-    height: 56px;
-    filter: brightness(0%);
+    text-decoration: none;
+    color: #fff;
+    text-shadow: -0.5px -0.5px 0px #ff0000, -0.5px 0.5px 0px #ff0000,
+      0.5px -0.5px 0px #ff0000, 0.5px 0px 0px #ff0000;
+
+    transition: all 0.2s;
+
+    &:hover {
+      padding-top: 8px;
+      color: #ffe100;
+    }
   }
-`;
 
-export const FooterMenu = styled.div`
-  width: 80%;
+  a:first-child {
+    display: flex;
+
+    img {
+      height: 56px;
+      filter: brightness(0%);
+    }
+  }
+
+  a:last-child {
+    display: flex;
+
+    img {
+      height: 48px;
+      filter: brightness(0%);
+      padding-right: 8px;
+    }
+  }
 `;
