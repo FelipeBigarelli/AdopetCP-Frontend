@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -6,11 +6,22 @@ import petBackgroundImg from '../../assets/pet-dashboard-background-2.png';
 
 import { Container, Content, Welcome, LastPosts } from './styles';
 
-import { usePost } from '../../hooks/post';
 import Post from '../../components/Post';
+import IPostDTO from '../../components/Post/dtos/IPostDTO';
+import api from '../../services/api';
 
 const Dashboard: React.FC = () => {
-  const { lastPosts } = usePost();
+  const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
+
+  const listLastPosts = useCallback(async () => {
+    await api.get<IPostDTO[]>('/posts/last').then(response => {
+      setLastPosts(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    listLastPosts();
+  }, [listLastPosts]);
 
   return (
     <Container>

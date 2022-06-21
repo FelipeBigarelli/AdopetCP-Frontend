@@ -14,6 +14,36 @@ export const Container = styled.div`
 
   transition: all 0.2s;
 
+  .category-and-report {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: inherit;
+
+    padding: 0 4px;
+
+    p.category {
+      font-size: 12px;
+      /* padding: 2px 8px; */
+      color: #ffe100;
+      text-shadow: 1px 1px #ff0000;
+    }
+
+    button#report-post-button {
+      border: none;
+      background: transparent;
+      width: 16px;
+      height: 16px;
+
+      position: relative;
+
+      svg {
+        font-size: 16px;
+        color: #ff0000;
+      }
+    }
+  }
+
   .rec-carousel-wrapper {
     height: auto;
     min-height: 195px;
@@ -27,13 +57,14 @@ export const Container = styled.div`
     .rec-arrow {
       display: none;
     }
-  }
 
-  p.category {
-    font-size: 12px;
-    padding: 2px 8px;
-    color: #ffe100;
-    text-shadow: 1px 1px #ff0000;
+    .rec-dot {
+      background-color: rgba(255, 144, 0, 0.5);
+
+      &:focus {
+        background-color: #ff9000;
+      }
+    }
   }
 
   img {
@@ -109,48 +140,46 @@ export const Content = styled.div`
       padding: 4px 4px 4px 0;
     }
   }
-
-  .whatsapp {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    svg {
-      color: #37ff0e;
-      margin-right: 4px;
-      margin-top: -2px;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
 `;
 
 export const Footer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   width: 100%;
+  height: 26px;
   padding: 4px 6px 0 4px;
+  font-size: 14px;
 
-  img {
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: none;
-    background: transparent;
-  }
-
-  #whatsapp {
-    display: flex;
-    align-items: center;
-    padding-left: 8px;
+  strong {
+    flex: 1;
+    height: inherit;
+    overflow-y: scroll;
 
     svg {
-      height: 22px;
+      padding-right: 2px;
+    }
+  }
+
+  .whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 128px;
+
+    svg {
       color: #37ff0e;
+      margin-right: 2px;
+      margin-top: -2px;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:visited {
+        color: #00008b;
+      }
     }
   }
 `;

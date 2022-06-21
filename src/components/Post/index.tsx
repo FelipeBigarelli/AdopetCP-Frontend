@@ -1,22 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { FiAlertTriangle } from 'react-icons/fi';
 import Carousel from 'react-elastic-carousel';
 
-import { useAuth } from '../../hooks/auth';
 import IPostDTO from './dtos/IPostDTO';
-
-import { Container, Content, Footer } from './styles';
-import img from '../../assets/cat.png';
-import maskPhone from '../../utils/maskPhone';
 import IPostImagesDTO from './dtos/IPostImagesDTO';
+import Modal from '../Modal';
+
+import maskPhone from '../../utils/maskPhone';
+import { Container, Content, Footer } from './styles';
+import { useModal } from '../../hooks/modal';
 
 interface IPostProps {
   post: IPostDTO;
 }
 
 const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
-  const { user } = useAuth();
   const [imgArray, setImgArray] = useState<IPostImagesDTO[]>([]);
+  const { toggle, isShown } = useModal();
 
   const getImages = useCallback(() => {
     if (post.images) {
@@ -24,12 +25,24 @@ const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
     }
   }, [post.images]);
 
+  const handleReportPost = useCallback(() => {
+    console.log('report');
+  }, []);
+
   useEffect(() => {
     getImages();
   }, [getImages]);
 
   return (
     <Container>
+      <Modal
+        isShown={isShown}
+        hide={toggle}
+        headerText="Denunciar publicação aos moderadores?"
+      >
+        <button type="button">Denunciar</button>
+      </Modal>
+
       <Carousel isRTL className="carousel">
         {imgArray &&
           imgArray?.map(item => (
@@ -40,11 +53,15 @@ const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
               alt="Animal"
             />
           ))}
-
-        {/* <img src={img} alt="DefaultImg" /> */}
       </Carousel>
 
-      <p className="category">{post.category_name}</p>
+      <div className="category-and-report">
+        <p className="category">{post.category_name}</p>
+
+        <button type="button" id="report-post-button" onClick={toggle}>
+          <FiAlertTriangle size={16} />
+        </button>
+      </div>
 
       <Content>
         <div className="description">
@@ -53,7 +70,7 @@ const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
         </div>
 
         <Footer>
-          <img src={user.avatar_url} alt="Avatar" />
+          <strong>Bairro: {post.district}</strong>
 
           <div className="whatsapp">
             <FaWhatsapp size={24} />

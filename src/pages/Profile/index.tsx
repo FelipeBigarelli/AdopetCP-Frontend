@@ -11,7 +11,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { FiCamera, FiMail } from 'react-icons/fi';
+import { FiCamera, FiMail, FiXCircle } from 'react-icons/fi';
 
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -37,15 +37,23 @@ import {
 } from './styles';
 import Post from '../../components/Post';
 import Footer from '../../components/Footer';
+import IPostDTO from '../../components/Post/dtos/IPostDTO';
 
 const Profile: React.FC = () => {
+  const [userPosts, setUserPosts] = useState<IPostDTO[]>([]);
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
   const { user, updateUser } = useAuth();
   const { isShown, toggle } = useModal();
-  const { userPosts, findById } = usePost();
+  const { findById } = usePost();
   const { addToast } = useToast();
+
+  const listUserPosts = useCallback(async () => {
+    await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
+      setUserPosts(response.data);
+    });
+  }, []);
 
   const handleSubmit = useCallback(
     async (data: IUserProfileDTO) => {
@@ -107,6 +115,27 @@ const Profile: React.FC = () => {
     [addToast, updateUser],
   );
 
+  const handleRemovePost = useCallback(
+    async (id: string) => {
+      await api.delete(`/users/post/${id}`);
+
+      const filteredPosts = userPosts.filter(posts => posts.id !== id);
+
+      setUserPosts(filteredPosts);
+    },
+    [userPosts],
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      listUserPosts();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [listUserPosts]);
+
   return (
     <>
       <Header />
@@ -158,7 +187,6 @@ const Profile: React.FC = () => {
                 <Post key={post.id} post={post} />
                 <a
                   id="edit-post"
-                  key={post.id}
                   href={`/posts/${post.id}`}
                   onClick={() => {
                     if (post.id) {
@@ -168,6 +196,17 @@ const Profile: React.FC = () => {
                 >
                   Editar
                 </a>
+                <button
+                  type="button"
+                  id="remove-post-button"
+                  onClick={() => {
+                    if (post.id) {
+                      handleRemovePost(post.id);
+                    }
+                  }}
+                >
+                  <FiXCircle size={16} />
+                </button>
               </PostContent>
             ))}
           </PostsContainer>

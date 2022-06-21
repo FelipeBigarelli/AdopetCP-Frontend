@@ -14,8 +14,10 @@ export const Overlay = styled.div`
 `;
 
 export const Container = styled.div`
+  height: 240px;
   width: 100%;
   max-width: 400px;
+
   background: #fff;
   border-radius: 4px;
   padding: 40px;
@@ -24,20 +26,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  form {
-    flex: 1;
-  }
+  justify-content: space-between;
 
   h1 {
     font-size: 24px;
     text-shadow: 1px 1px #00d4ff;
-
-    padding-bottom: 8px;
-  }
-
-  p {
-    margin-top: 18px;
   }
 `;
 
@@ -46,29 +39,20 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  div {
-    margin-bottom: 12px;
-  }
-
-  .editprofile-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   button {
-    width: 50%;
-    padding: 8px;
+    width: 120px;
+    height: 48px;
 
-    background-color: #00d4ff;
+    background: #ff0000;
+    color: #fff;
+    font-weight: bold;
+
     border: none;
-    border-radius: 0 8px 0 8px;
+    border-radius: 4px;
   }
 `;
 
 export const Footer = styled.footer`
-  margin-top: 32px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -77,9 +61,10 @@ export const Footer = styled.footer`
     background: transparent;
     border: none;
     font-size: 16px;
+    font-weight: bold;
     margin-right: 8px;
 
-    text-shadow: 1px 1px #ff2000;
+    color: #000;
     transition: color 0.2s;
 
     &:hover {

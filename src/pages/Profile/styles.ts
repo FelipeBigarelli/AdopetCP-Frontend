@@ -110,13 +110,26 @@ export const PostContent = styled.div`
     font-weight: bold;
 
     position: relative;
-    bottom: 140px;
-    left: 205px;
+    bottom: 180px;
+    left: 210px;
 
     transition: color 0.2s;
 
     &:hover {
       color: #cecece;
+    }
+  }
+
+  button#remove-post-button {
+    border: none;
+    background: transparent;
+
+    position: relative;
+    bottom: 330px;
+    left: 190px;
+
+    svg {
+      color: #ff0000;
     }
   }
 `;

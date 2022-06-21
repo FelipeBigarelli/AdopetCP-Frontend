@@ -41,7 +41,7 @@ export const LastPosts = styled.div`
 
   border-radius: 8px;
   padding: 12px 0 10px 0;
-  background: #d200ff;
+  background: #ff9000;
 
   &::-webkit-scrollbar {
     width: 12px;

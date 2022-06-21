@@ -35,7 +35,7 @@ const PostImages: React.FC = () => {
           },
         });
 
-        history.push('/dashboard');
+        history.push('/profile');
 
         addToast({
           type: 'success',
@@ -47,7 +47,7 @@ const PostImages: React.FC = () => {
   );
 
   const handleSkipImages = useCallback(() => {
-    history.push('/dashboard');
+    history.push('/profile');
   }, [history]);
 
   useEffect(() => {

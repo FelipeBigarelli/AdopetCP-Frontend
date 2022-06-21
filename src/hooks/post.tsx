@@ -7,15 +7,8 @@ import React, {
 } from 'react';
 import IPostDTO from '../components/Post/dtos/IPostDTO';
 import api from '../services/api';
-import maskPhone from '../utils/maskPhone';
 
 interface PostContextData {
-  listUserPosts(): void;
-  userPosts: IPostDTO[];
-  listAllPosts(): void;
-  allPosts: IPostDTO[];
-  listLastPosts(): void;
-  lastPosts: IPostDTO[];
   listCategories(): void;
   categories: ICategoriesDTO[];
   findByLastCreated(): void;
@@ -32,30 +25,9 @@ interface ICategoriesDTO {
 const PostContext = createContext<PostContextData>({} as PostContextData);
 
 const PostProvider: React.FC = ({ children }) => {
-  const [userPosts, setUserPosts] = useState<IPostDTO[]>([]);
-  const [allPosts, setAllPosts] = useState<IPostDTO[]>([]);
-  const [lastPosts, setLastPosts] = useState<IPostDTO[]>([]);
   const [categories, setCategories] = useState<ICategoriesDTO[]>([]);
   const [lastCreated, setLastCreated] = useState<IPostDTO>();
   const [postById, setPostById] = useState<IPostDTO>();
-
-  const listUserPosts = useCallback(async () => {
-    await api.get<IPostDTO[]>('/posts/user-posts').then(response => {
-      setUserPosts(response.data);
-    });
-  }, []);
-
-  const listAllPosts = useCallback(async () => {
-    await api.get<IPostDTO[]>('/posts').then(response => {
-      setAllPosts(response.data);
-    });
-  }, []);
-
-  const listLastPosts = useCallback(async () => {
-    await api.get<IPostDTO[]>('/posts/last').then(response => {
-      setLastPosts(response.data);
-    });
-  }, []);
 
   const listCategories = useCallback(async () => {
     await api.get<ICategoriesDTO[]>('/categories').then(response => {
@@ -85,26 +57,11 @@ const PostProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     listCategories();
-    listAllPosts();
-  }, [listCategories, listAllPosts]);
-
-  useEffect(() => {
-    listUserPosts();
-  }, [listUserPosts]);
-
-  useEffect(() => {
-    listLastPosts();
-  }, [listLastPosts]);
+  }, [listCategories]);
 
   return (
     <PostContext.Provider
       value={{
-        listUserPosts,
-        userPosts,
-        listAllPosts,
-        allPosts,
-        listLastPosts,
-        lastPosts,
         listCategories,
         categories,
         findByLastCreated,

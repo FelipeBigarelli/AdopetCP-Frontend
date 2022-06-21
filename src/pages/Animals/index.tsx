@@ -14,10 +14,18 @@ import Post from '../../components/Post';
 import { Container, Content, Filter, AllPosts } from './styles';
 import IPostDTO from '../../components/Post/dtos/IPostDTO';
 import Footer from '../../components/Footer';
+import api from '../../services/api';
 
 const Animals: React.FC = () => {
-  const { categories, allPosts } = usePost();
+  const [allPosts, setAllPosts] = useState<IPostDTO[]>([]);
+  const { categories } = usePost();
   const [filterByCategory, setFilterByCategory] = useState('Selecione');
+
+  const listAllPosts = useCallback(async () => {
+    await api.get<IPostDTO[]>('/posts').then(response => {
+      setAllPosts(response.data);
+    });
+  }, []);
 
   const handleChangeCategory = useCallback(
     async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -39,6 +47,16 @@ const Animals: React.FC = () => {
 
     return filtered;
   }, [getFilteredList]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      listAllPosts();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [listAllPosts]);
 
   return (
     <>
