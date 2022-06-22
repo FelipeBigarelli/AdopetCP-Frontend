@@ -19,7 +19,7 @@ const PostImages: React.FC = () => {
   const history = useHistory();
 
   const handleUploadImages = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+    async (e: ChangeEvent<HTMLInputElement>) => {
       const { files } = e.target;
       const data = new FormData();
 
@@ -29,7 +29,7 @@ const PostImages: React.FC = () => {
           data.append('images', files[i]);
         }
 
-        api.post(`/posts/images/${lastCreated?.id}`, data, {
+        await api.post(`/posts/images/${lastCreated?.id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

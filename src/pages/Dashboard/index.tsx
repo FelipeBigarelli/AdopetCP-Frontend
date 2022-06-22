@@ -20,7 +20,13 @@ const Dashboard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    listLastPosts();
+    const timer = setTimeout(() => {
+      listLastPosts();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [listLastPosts]);
 
   return (

@@ -10,6 +10,7 @@ import Modal from '../Modal';
 import maskPhone from '../../utils/maskPhone';
 import { Container, Content, Footer } from './styles';
 import { useModal } from '../../hooks/modal';
+import api from '../../services/api';
 
 interface IPostProps {
   post: IPostDTO;
@@ -25,9 +26,11 @@ const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
     }
   }, [post.images]);
 
-  const handleReportPost = useCallback(() => {
-    console.log('report');
-  }, []);
+  const handleReportPost = useCallback(async () => {
+    await api.post(`/posts/send-notification/${post.id}`);
+
+    toggle();
+  }, [post.id, toggle]);
 
   useEffect(() => {
     getImages();
@@ -40,7 +43,9 @@ const Post: React.FC<IPostProps> = ({ post }: IPostProps) => {
         hide={toggle}
         headerText="Denunciar publicação aos moderadores?"
       >
-        <button type="button">Denunciar</button>
+        <button type="button" onClick={handleReportPost}>
+          Denunciar
+        </button>
       </Modal>
 
       <Carousel isRTL className="carousel">
