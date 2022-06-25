@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { FiCamera, FiXCircle } from 'react-icons/fi';

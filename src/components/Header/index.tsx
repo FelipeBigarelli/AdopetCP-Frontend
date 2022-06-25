@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Container, Content } from './styles';
 
@@ -6,15 +6,7 @@ import logoImg from '../../assets/logo.png';
 import adotarImg from '../../assets/adotar.png';
 import searchAnimalsImg from '../../assets/search-animals.png';
 import logoutImg from '../../assets/logoutImg.png';
-import userProfileImg from '../../assets/userProfileIcon.png';
 import { useAuth } from '../../hooks/auth';
-
-interface IProfile {
-  id: string;
-  name: string;
-  email: string;
-  avatar_url: string;
-}
 
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();

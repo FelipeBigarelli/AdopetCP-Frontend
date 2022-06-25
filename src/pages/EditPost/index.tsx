@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { FaWhatsapp } from 'react-icons/fa';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
-import { useAuth } from '../../hooks/auth';
 import { usePost } from '../../hooks/post';
 
 import IPostDTO from '../../components/Post/dtos/IPostDTO';
