@@ -14,7 +14,7 @@ export const Overlay = styled.div`
 `;
 
 export const Container = styled.div`
-  height: 240px;
+  height: auto;
   width: 100%;
   max-width: 400px;
 
@@ -27,6 +27,21 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  .cancel-button {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+
+    color: #000;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ffe100;
+    }
+  }
 
   h1 {
     font-size: 24px;
@@ -49,26 +64,6 @@ export const Content = styled.div`
 
     border: none;
     border-radius: 4px;
-  }
-`;
-
-export const Footer = styled.footer`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  .cancel-button {
-    background: transparent;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 8px;
-
-    color: #000;
-    transition: color 0.2s;
-
-    &:hover {
-      color: #ffe100;
-    }
+    margin: 32px 0;
   }
 `;

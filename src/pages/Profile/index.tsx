@@ -35,6 +35,7 @@ import {
   PostsContainer,
   PostContent,
 } from './styles';
+
 import Post from '../../components/Post';
 import Footer from '../../components/Footer';
 import IPostDTO from '../../components/Post/dtos/IPostDTO';
@@ -150,10 +151,14 @@ const Profile: React.FC = () => {
             <Form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="editprofile-form"
               initialData={{
                 name: user.name,
                 email: user.email,
+              }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
             >
               <Input name="name" icon={FaUser} placeholder="Nome" />

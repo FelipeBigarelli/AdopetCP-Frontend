@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Overlay, Container, Content, Footer } from './styles';
+import { Overlay, Container, Content } from './styles';
 
 interface ModalProps {
   isShown: boolean;
@@ -25,11 +25,9 @@ const Modal: React.FC<ModalProps> = ({
 
             <Content>{children}</Content>
 
-            <Footer>
-              <button type="button" className="cancel-button" onClick={hide}>
-                Cancelar
-              </button>
-            </Footer>
+            <button type="button" className="cancel-button" onClick={hide}>
+              Cancelar
+            </button>
           </Container>
         </Overlay>,
         portalDiv,
