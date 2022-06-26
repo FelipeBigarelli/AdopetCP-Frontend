@@ -21,6 +21,10 @@ export default createGlobalStyle`
     font-weight: 500;
   }
 
+  h1 {
+    font-size: 2.4em;
+  }
+
   button {
     cursor: pointer;
   }

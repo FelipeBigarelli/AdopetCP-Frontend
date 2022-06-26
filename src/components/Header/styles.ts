@@ -12,8 +12,10 @@ export const Container = styled.header`
   justify-content: center;
   align-items: center;
 
-  background: #00d4ff;
+  background: ${({ theme }) => theme.colors.green};
   box-shadow: 0 0 1em red;
+
+  z-index: 1;
 `;
 
 export const Content = styled.div`
@@ -31,15 +33,9 @@ export const Content = styled.div`
     padding: 16px;
     font-size: 20px;
     text-decoration: none;
-    border-left: 0.5px solid #fff;
 
-    &:last-child {
-      border-right: 1px solid #fff;
-    }
-
-    color: #fff;
-    text-shadow: -0.5px -0.5px 0px #ff0000, -0.5px 0.5px 0px #ff0000,
-      0.5px -0.5px 0px #ff0000, 0.5px 0px 0px #ff0000;
+    color: #ffe100;
+    text-shadow: 1px 1px #ff0000;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 500;
 
@@ -54,9 +50,9 @@ export const Content = styled.div`
     transition: all 0.2s;
 
     &:hover {
-      color: #ffe100;
+      /* color: #ffe100; */
       padding-bottom: 8px;
-      border-bottom-color: #ffe100;
+      /* border-bottom-color: #ffe100; */
     }
 
     img {

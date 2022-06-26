@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
+  background: ${({ theme }) => theme.colors.background};
 
   h1 {
     padding: 32px 0;
@@ -18,7 +19,7 @@ export const Container = styled.div`
     border-radius: 8px;
 
     color: #000;
-    background: #00d4ff;
+    background: ${({ theme }) => theme.colors.green};
 
     width: 200px;
     height: 32px;
@@ -26,7 +27,6 @@ export const Container = styled.div`
     transition: all 0.2s;
 
     &:hover {
-      background: ${shade(0.1, '#00d4ff')};
       color: #fff;
     }
   }
@@ -43,7 +43,7 @@ export const Content = styled.div`
   padding: 16px;
   margin-bottom: 32px;
 
-  background: #00d4ff;
+  background: ${({ theme }) => theme.colors.orange};
   border-radius: 16px;
 
   label {

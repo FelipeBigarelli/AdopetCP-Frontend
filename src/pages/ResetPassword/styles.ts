@@ -16,7 +16,7 @@ export const Content = styled.div`
   max-width: 50%;
   height: 80%;
 
-  background: #fff;
+  background: #ffe8e9;
   border-radius: 16px;
 `;
 

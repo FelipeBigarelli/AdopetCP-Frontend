@@ -5,11 +5,11 @@ import Header from '../../components/Header';
 import aboutDog from '../../assets/aboutDog.png';
 import aboutGrass from '../../assets/about-grass.png';
 
-import { Container, Content, Text } from './styles';
+import { About, Container, Content, Text } from './styles';
 
 const AboutAdopet: React.FC = () => {
   return (
-    <>
+    <About>
       <Header />
 
       <Container>
@@ -31,7 +31,7 @@ const AboutAdopet: React.FC = () => {
       </Container>
 
       <Footer />
-    </>
+    </About>
   );
 };
 

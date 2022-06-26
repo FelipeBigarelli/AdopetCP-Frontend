@@ -15,6 +15,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 const EditPost: React.FC = () => {
   const [categoryValue, setCategoryValue] = useState('Selecione uma categoria');
@@ -173,6 +174,8 @@ const EditPost: React.FC = () => {
           </Form>
         </Content>
       </Container>
+
+      <Footer />
     </>
   );
 };
