@@ -1,22 +1,24 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 96px 32px 0 32px;
-  width: 100%;
-  max-width: 1200px;
+  padding: 96px 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
+  align-items: center;
 
-  h1 {
-    text-shadow: 1px 1px #00d4ff;
-    padding-top: 32px;
-  }
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 export const Content = styled.div`
-  padding: 32px 0 96px 0;
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+
+  h1 {
+    text-shadow: 2px 1px 2px #ff6041;
+    padding: 32px 0;
+  }
 `;
 
 export const Filter = styled.div`
@@ -30,8 +32,8 @@ export const Filter = styled.div`
 
   select {
     flex: 1;
-    border-color: #00d4ff;
     border-radius: 4px;
+    border: 2px solid #ff6041;
     background-color: transparent;
   }
 `;
@@ -41,38 +43,6 @@ export const AllPosts = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-`;
-
-export const Post = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  background: #00d4ff;
-  border-radius: 8px;
-
-  width: 200px;
-  height: 240px;
-  margin: 16px 8px 0 8px;
-
-  & + & {
-    margin-bottom: 24px;
-  }
-
-  p.category {
-    font-size: 12px;
-    padding: 2px 8px;
-    color: #d200ff;
-    text-shadow: 1px 1px #000;
-  }
-
-  img {
-    height: 100%;
-    width: 200px;
-    border-radius: 8px 8px 0 0;
-    border: 2px solid #00d4ff;
-
-    background-color: #fff;
-  }
 `;
 
 export const PostContent = styled.div`

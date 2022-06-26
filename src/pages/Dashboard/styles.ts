@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 96px 0;
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 
 export const Content = styled.div`
@@ -15,8 +17,6 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 1200px;
-
-  background: #fff;
 `;
 
 export const Welcome = styled.div`
@@ -26,6 +26,7 @@ export const Welcome = styled.div`
 
   h2 {
     padding-bottom: 24px;
+    font-size: 2em;
   }
 `;
 
@@ -41,7 +42,7 @@ export const LastPosts = styled.div`
 
   border-radius: 8px;
   padding: 12px 0 10px 0;
-  background: #ff9000;
+  background: ${({ theme }) => theme.colors.orange};
 
   &::-webkit-scrollbar {
     width: 12px;
@@ -64,7 +65,7 @@ export const LastPosts = styled.div`
 export const Post = styled.div`
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: #ffe8e9;
   border-radius: 8px;
   width: 200px;
   height: 240px;

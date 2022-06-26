@@ -19,7 +19,7 @@ export const Content = styled.div`
   height: 100%;
   width: 100%;
   max-width: 700px;
-  background: #00d4ff;
+  background: ${({ theme }) => theme.colors.green};
 `;
 
 const appearFromLeft = keyframes`
@@ -51,7 +51,8 @@ export const AnimationContainer = styled.div`
     max-width: 400px;
 
     border-radius: 16px 0 16px 0;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.background};
+    box-shadow: 4px 8px 10px rgb(255, 96, 65);
 
     display: flex;
     flex-direction: column;
@@ -71,7 +72,7 @@ export const AnimationContainer = styled.div`
 
       border-radius: 10px;
       border: none;
-      background: #ff9000;
+      background: ${({ theme }) => theme.colors.orange};
       transition: background-color 0.2s;
 
       &:hover {

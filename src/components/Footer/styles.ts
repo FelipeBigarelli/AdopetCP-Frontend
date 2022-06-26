@@ -9,7 +9,8 @@ export const Container = styled.footer`
   height: 64px;
   width: 100%;
 
-  background: #00d4ff;
+  background: #008968;
+  box-shadow: 0 0 1em red;
 `;
 
 export const Content = styled.div`
@@ -26,15 +27,13 @@ export const Content = styled.div`
     align-items: center;
 
     text-decoration: none;
-    color: #fff;
-    text-shadow: -0.5px -0.5px 0px #ff0000, -0.5px 0.5px 0px #ff0000,
-      0.5px -0.5px 0px #ff0000, 0.5px 0px 0px #ff0000;
+    color: #ffe100;
+    text-shadow: 1px 1px #ff0000;
 
     transition: all 0.2s;
 
     &:hover {
       padding-top: 8px;
-      color: #ffe100;
     }
   }
 

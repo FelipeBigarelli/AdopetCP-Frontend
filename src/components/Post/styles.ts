@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  background: #00d4ff;
+  background: ${({ theme }) => theme.colors.green};
   border-radius: 8px;
 
   width: 240px;
@@ -72,14 +72,12 @@ export const Container = styled.div`
     width: inherit;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
-    border: 2px solid #00d4ff;
-
-    background-color: #fff;
+    border: 2px solid ${({ theme }) => theme.colors.green};
   }
 
   &:hover {
     border-color: #d200ff;
-    box-shadow: 0 0 0.5em #00d4ff;
+    box-shadow: 0 0 0.5em ${({ theme }) => theme.colors.green};
   }
 `;
 

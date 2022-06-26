@@ -63,8 +63,8 @@ const Animals: React.FC = () => {
       <Header />
 
       <Container>
-        <h1>Postagens</h1>
         <Content>
+          <h1>Postagens</h1>
           <Filter>
             <h3>Filtrar por categoria</h3>
             <select

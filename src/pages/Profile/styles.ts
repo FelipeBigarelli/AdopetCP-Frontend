@@ -6,6 +6,9 @@ export const Container = styled.div`
   max-height: 100%;
   width: 100%;
   padding: 96px 0;
+
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 export const Content = styled.div`
@@ -14,15 +17,13 @@ export const Content = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 
-  background: #fff;
-
   button#edit-button {
     margin: 32px 0 0 62px;
-    padding: 4px 8px;
+    padding: 6px 10px;
 
-    border: 1px solid #00d4ff;
-    background-color: #00d4ff;
-    box-shadow: 0 0 0.5em #ff2000;
+    border: none;
+    border-radius: 4px;
+    background: ${({ theme }) => theme.colors.orange};
 
     transition: color 0.2s;
 
@@ -60,7 +61,8 @@ export const AvatarInput = styled.div`
     height: 48px;
     left: 40px;
     top: 48px;
-    background: #00d4ff;
+    background: ${({ theme }) => theme.colors.green};
+
     border-radius: 50%;
     border: 0;
     cursor: pointer;

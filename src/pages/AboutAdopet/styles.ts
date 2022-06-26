@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const About = styled.div`
+  height: 100vh;
+  background: ${({ theme }) => theme.colors.background};
+
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,7 +16,7 @@ export const Container = styled.div`
   max-width: 1200px;
 
   h1 {
-    padding-top: 32px;
+    padding-top: 56px;
   }
 
   #grass {
@@ -18,6 +25,7 @@ export const Container = styled.div`
     left: 0;
     width: 100%;
     height: fit-content;
+    z-index: 1;
   }
 `;
 
@@ -30,7 +38,7 @@ export const Content = styled.div`
     height: 640px;
     width: 640px;
     position: absolute;
-    top: 120px;
+    top: 160px;
     z-index: 1;
   }
 `;
